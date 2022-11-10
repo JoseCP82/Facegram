@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f92895e5-b136-41ea-b3f1-d9f5229b92a3" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/facegram/model/dataobject/Post.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/facegram/model/dataobject/Post.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,7 +69,7 @@
       <updated>1668034593523</updated>
       <workItem from="1668034594765" duration="2991000" />
       <workItem from="1668069290040" duration="5821000" />
-      <workItem from="1668078373008" duration="4791000" />
+      <workItem from="1668078373008" duration="6290000" />
     </task>
     <servers />
   </component>
