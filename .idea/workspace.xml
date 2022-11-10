@@ -5,7 +5,12 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f92895e5-b136-41ea-b3f1-d9f5229b92a3" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/facegram/loginController.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/com/facegram/login.fxml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/connectiondata/connectionData.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/facegram/model/DAO/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/facegram/model/DAO/UserDAO.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/facegram/hello-view.fxml" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,6 +21,7 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Interface" />
+        <option value="FxmlFile" />
         <option value="Class" />
       </list>
     </option>
