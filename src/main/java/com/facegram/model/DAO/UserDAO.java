@@ -1,5 +1,6 @@
 package com.facegram.model.DAO;
 
+import com.facegram.connection.DBConnection;
 import com.facegram.interfaces.IDAO;
 import com.facegram.logging.Logging;
 import com.facegram.model.dataobject.User;
@@ -10,17 +11,31 @@ import java.util.List;
 
 public class UserDAO extends User implements IDAO<User, Integer> {
 
-    //Atributos de UserDAO
-    public Connection miCon;
+    /**
+     * Atributos de UserDAO
+     */
 
-    //Sentencias de UserDAO
-    private String insertSQL="INSERT INTO user (id,name,password) VALUES id=?, name=?, password=?";
+    private Connection miCon;
+
+    public UserDAO(User u){
+        super(u.getId(),u.getName(),u.getPassword());
+        this.miCon = DBConnection.getConnect();
+    }
+
+    /**
+     * Sentencias de UserDAO
+     */
+    private String insertSQL="INSERT INTO user (id,name,password) VALUES (?,?,?))";
     private String getSQL="SELECT * FROM user WHERE id=?";
     private String getAllSQL="SELECT * FROM user";
     private String updateSQL="UPDATE user SET id=?, name=?, password=? WHERE id=?";
     private String deleteSQL="DELETE FROM user WHERE id=?";
 
-    //Métodos de UserDAO
+    /**
+     * Mátodo que crea un User en la base de datos
+     * @param obj Objeto a insertar
+     * @return true o false si lo inserta o no
+     */
     @Override
     public boolean insert(User obj) {
         boolean result = false;
@@ -38,6 +53,11 @@ public class UserDAO extends User implements IDAO<User, Integer> {
         return result;
     }
 
+    /**
+     * Método que busca un User por su id en la base de datos
+     * @param id Id del objeto a buscar
+     * @return el User o null si lo ha encontrado o no
+     */
     @Override
     public User get(Integer id) {
         User aux=null;
@@ -58,6 +78,10 @@ public class UserDAO extends User implements IDAO<User, Integer> {
         return aux;
     }
 
+    /**
+     * Método que busca todos los Users de la base de datos
+     * @return la lista de Users o null si los ha encontrado o no
+     */
     @Override
     public List getAll() {
         List<User> result = new ArrayList<User>();
@@ -78,6 +102,11 @@ public class UserDAO extends User implements IDAO<User, Integer> {
         return result;
     }
 
+    /**
+     * Método que edita los campos de la tabla User en la base de datos
+     * @param obj Objeto a modificar
+     * @return 1 o 0 si los ha editado o no
+     */
     @Override
     public int update(User obj) {
         int i;
@@ -96,6 +125,11 @@ public class UserDAO extends User implements IDAO<User, Integer> {
         return i;
     }
 
+    /**
+     * Método que borra la tabla User de la base de datos
+     * @param obj Objeto a modificar
+     * @return 1 o 0 si la ha borrado o no
+     */
     @Override
     public int delete(User obj) {
         int i;
