@@ -33,7 +33,6 @@ public class PostDAO extends Post implements IDAO<Post,Integer>  {
      */
     public PostDAO(){
         super();
-
     }
 
     @Override
