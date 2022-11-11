@@ -11,15 +11,8 @@ import java.util.List;
 
 public class UserDAO extends User implements IDAO<User, Integer> {
 
-    /**
-     * Atributos de UserDAO
-     */
-
-    private Connection miCon;
-
     public UserDAO(User u){
         super(u.getId(),u.getName(),u.getPassword());
-        this.miCon = DBConnection.getConnect();
     }
 
     /**
@@ -39,6 +32,7 @@ public class UserDAO extends User implements IDAO<User, Integer> {
     @Override
     public boolean insert(User obj) {
         boolean result = false;
+        Connection miCon = DBConnection.getConnect();
         try{
             PreparedStatement ps = miCon.prepareStatement(insertSQL);
             ps.setInt(1,obj.getId());
@@ -61,6 +55,7 @@ public class UserDAO extends User implements IDAO<User, Integer> {
     @Override
     public User get(Integer id) {
         User aux=null;
+        Connection miCon = DBConnection.getConnect();
         try {
             PreparedStatement ps = miCon.prepareStatement(getSQL);
             ps.setInt(1,id);
@@ -85,6 +80,7 @@ public class UserDAO extends User implements IDAO<User, Integer> {
     @Override
     public List getAll() {
         List<User> result = new ArrayList<User>();
+        Connection miCon = DBConnection.getConnect();
         try{
             Statement st = miCon.createStatement();
             ResultSet rs = st.executeQuery(getAllSQL);
@@ -110,6 +106,7 @@ public class UserDAO extends User implements IDAO<User, Integer> {
     @Override
     public int update(User obj) {
         int i;
+        Connection miCon = DBConnection.getConnect();
         try {
             PreparedStatement ps = miCon.prepareStatement(updateSQL);
             ps.setInt(1, obj.getId());
@@ -133,6 +130,7 @@ public class UserDAO extends User implements IDAO<User, Integer> {
     @Override
     public int delete(User obj) {
         int i;
+        Connection miCon = DBConnection.getConnect();
         try {
             PreparedStatement ps=miCon.prepareStatement(deleteSQL);
             ps.setInt(1, obj.getId());
