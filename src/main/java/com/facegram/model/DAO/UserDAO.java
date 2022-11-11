@@ -20,6 +20,7 @@ public class UserDAO extends User implements IDAO<User, Integer> {
     public UserDAO(User u){
         super(u.getId(),u.getName(),u.getPassword());
         this.miCon = DBConnection.getConnect();
+        System.out.println("Hola");
     }
 
     /**

@@ -6,9 +6,7 @@
   <component name="ChangeListManager">
     <list default="true" id="61ac5b46-3b32-4062-a49a-58ef68ac86cb" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/facegram/App.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/facegram/App.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/facegram/model/DAO/UserDAO.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/facegram/model/DAO/UserDAO.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/facegram/model/dataobject/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/facegram/model/dataobject/User.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
