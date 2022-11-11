@@ -13,7 +13,7 @@ public class Post {
     protected Date date;
     protected Date editDate;
     protected User owner;
-    protected List<Commnent> comments;
+    protected List<Comment> comments;
 
     /**
      * Constructor parametrizado
@@ -120,7 +120,7 @@ public class Post {
      * Obtiene la lista de comentarios
      * @return Lista de comentarios
      */
-    public List<Commnent> getComments() {
+    public List<Comment> getComments() {
         return comments;
     }
 
@@ -128,7 +128,7 @@ public class Post {
      * Setea la lista de comentarios
      * @param comments Lista de comentarios
      */
-    public void setComments(List<Commnent> comments) {
+    public void setComments(List<Comment> comments) {
         this.comments = comments;
     }
 }
