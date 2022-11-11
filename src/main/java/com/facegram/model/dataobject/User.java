@@ -6,15 +6,19 @@ import java.util.Objects;
 
 public class User {
 
-    //Atributos de user
-    private int id;
-    private String name;
-    private String password;
-    private List<Post> posts;
-    private List<User> followereds;
-    private List<User> followers;
+    /**
+     * Atributos de user
+     */
+    protected int id;
+    protected String name;
+    protected String password;
+    protected List<Post> posts;
+    protected List<User> followereds;
+    protected List<User> followers;
 
-    //Constructor de user
+    /**
+     * Constructores de User por defecto y fullBuild
+     */
     public User(){}
     public User(int id, String name, String password) {
         this.id = id;
@@ -25,7 +29,10 @@ public class User {
         this.followers = null;
     }
 
-    //Getters & Setters de user
+    /**
+     * Getters & Setters de User
+     * @return
+     */
     public int getId() {
         return id;
     }
@@ -53,7 +60,10 @@ public class User {
         this.followers=u.followers;
     }
 
-    //ToString de user
+    /**
+     * Método toString de User
+     * @return
+     */
     @Override
     public String toString() {
         return "User{" +
@@ -61,7 +71,11 @@ public class User {
                 '}';
     }
 
-    //Equals & HashCode de user
+    /**
+     * Método equals & hashCode de User
+     * @param o
+     * @return
+     */
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
