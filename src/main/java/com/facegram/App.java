@@ -22,8 +22,14 @@ public class App /**extends Application*/ {
     public static void main(String[] args) {
 
         //launch();
+
+
+
+
+        //launch();
         User u = new User(1,"Juan","12345");
         UserDAO uDAO = new UserDAO(u);
         uDAO.insert(u);
+
     }
 }

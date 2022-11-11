@@ -1,5 +1,6 @@
 package com.facegram.model.dataobject;
 
+import java.util.Date;
 import java.util.List;
 
 public class Post {
@@ -7,23 +8,96 @@ public class Post {
     /**
      * Atributos de clase
      */
-    private User owner;
-    private List<Commnent> comments;
+    protected int id;
+    protected String text;
+    protected Date date;
+    protected Date editDate;
+    protected User owner;
+    protected List<Commnent> comments;
 
     /**
-     * Constructor con parametros
-     * @param owner Usuario que crea el post
-     * @param comments Lista de comentaios que puede tener el post
+     * Constructor parametrizado
+     * @param id Identificación asignada al post
+     * @param text Texto que tiene el post
+     * @param date Fecha de creación del post
+     * @param editDate Fecha de actualización del post
      */
-    public Post(User owner, List<Commnent> comments) {
-        this.owner = owner;
-        this.comments = comments;
+    public Post(int id, String text, Date date, Date editDate) {
+        this.id = id;
+        this.text = text;
+        this.date = date;
+        this.editDate = editDate;
     }
 
     /**
      * Constructor por defecto
      */
     public Post() {
+        this(-1,"",null,null);
+    }
+
+    /**
+     * Obtiene el id del post
+     * @return Id del post
+     */
+    public int getId() {
+        return id;
+    }
+
+    /**
+     * Setea el id del post
+     * @param id Id a setear
+     */
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    /**
+     * Obtiene el text o mensaje del post
+     * @return Texto del posteado
+     */
+    public String getText() {
+        return text;
+    }
+
+    /**
+     * Setea el texto a postear
+     * @param text Texto del post
+     */
+    public void setText(String text) {
+        this.text = text;
+    }
+
+    /**
+     * Obtiene la fecha de creacion del post
+     * @return Fecha del post
+     */
+    public Date getDate() {
+        return date;
+    }
+
+    /**
+     * Setea la fecha de creación del post
+     * @param date Fecha a postear
+     */
+    public void setDate(Date date) {
+        this.date = date;
+    }
+
+    /**
+     * Obtiene la fecha en que se actualizó el post
+     * @return Fecha actualizada del post
+     */
+    public Date getEditDate() {
+        return editDate;
+    }
+
+    /**
+     * Setea la fecha de actualización del post
+     * @param editDate Fecha a setear
+     */
+    public void setEditDate(Date editDate) {
+        this.editDate = editDate;
     }
 
     /**

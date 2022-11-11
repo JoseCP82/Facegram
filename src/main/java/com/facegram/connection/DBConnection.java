@@ -14,7 +14,7 @@ public class DBConnection {
     /**
      * Atributos de clase
      */
-    private static Connection con;
+    private static Connection conn;
     private static DBConnection _newInstance;
 
     /**
@@ -23,11 +23,11 @@ public class DBConnection {
     private DBConnection() {
         try {
             DataConnection dc = load();
-            con= DriverManager.getConnection(dc.getServer()+"/"+dc.getDatabase(), dc.getUsername(), dc.getPassword());
+            conn= DriverManager.getConnection(dc.getServer()+"/"+dc.getDatabase(), dc.getUsername(), dc.getPassword());
         } catch (SQLException e) {
             new ErrorMessage("No se pudo crear la conexion").showMessage();
             Logging.warningLogging(e+"");
-            con=null;
+            conn=null;
         }
     }
 
@@ -39,7 +39,7 @@ public class DBConnection {
         if(_newInstance==null) {
             _newInstance=new DBConnection();
         }
-        return con;
+        return conn;
     }
 
     /**
@@ -54,8 +54,22 @@ public class DBConnection {
             Unmarshaller um = context.createUnmarshaller();
             dc = (DataConnection) um.unmarshal(Connection.class.getResource("/connectiondata/connectionData.xml"));
         } catch (JAXBException e) {
-           Logging.warningLogging(e+"");
+            new ErrorMessage("No se pudieron obtener los datos de conexión.").showMessage();
+            Logging.warningLogging(e+"");
         }
         return dc;
+    }
+
+    /**
+     * Procedimiento el cual finaliza la conexión
+     */
+    public static void close() {
+        if(conn != null) {
+            try {
+                conn.close();
+            }catch(SQLException ex) {
+                Logging.warningLogging(ex+"");
+            }
+        }
     }
 }
