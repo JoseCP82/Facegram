@@ -1,13 +1,16 @@
 package com.facegram;
 
+import com.facegram.connection.DBConnection;
 import com.facegram.model.DAO.UserDAO;
 import com.facegram.model.dataobject.User;
+import com.facegram.utils.message.ErrorMessage;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.sql.Connection;
 
 public class App /**extends Application*/ {
     /**@Override
@@ -20,11 +23,6 @@ public class App /**extends Application*/ {
     }*/
 
     public static void main(String[] args) {
-
-        //launch();
-
-
-
 
         //launch();
         User u = new User(1,"Juan","12345");
