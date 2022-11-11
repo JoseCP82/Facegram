@@ -1,12 +1,8 @@
 package com.facegram.model.dataobject;
 
-<<<<<<< HEAD:src/main/java/com/facegram/model/dataobject/Commnent.java
 import java.util.Date;
 
-public class Commnent {
-=======
 public class Comment {
->>>>>>> bd53c2c1830b088776c545a9e4669e4562ca6980:src/main/java/com/facegram/model/dataobject/Comment.java
 
     protected int id;
     protected User user;
@@ -22,7 +18,7 @@ public class Comment {
      * @param text Texto que contiene el comentario
      * @param date Fecha de publicación del comentario
      */
-    public Commnent(int id, User user, Post post, String text, Date date) {
+    public Comment(int id, User user, Post post, String text, Date date) {
         this.id = id;
         this.user = user;
         this.post = post;
@@ -33,7 +29,7 @@ public class Comment {
     /**
      * Constructor por defecto
      */
-    public Commnent() {
+    public Comment() {
         this.id=-1;
         this.user = null;
         this.post = null;
