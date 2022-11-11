@@ -1,6 +1,6 @@
 package com.facegram.model.dataobject;
 
-public class Commnent {
+public class Comment {
 
     private User user;
     private Post post;
