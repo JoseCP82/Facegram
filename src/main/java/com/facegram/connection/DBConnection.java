@@ -2,6 +2,8 @@ package com.facegram.connection;
 
 import com.facegram.logging.Logging;
 import com.facegram.utils.message.ErrorMessage;
+import com.facegram.utils.message.InfoMessage;
+
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
 import javax.xml.bind.Unmarshaller;
@@ -25,7 +27,7 @@ public class DBConnection {
             DataConnection dc = load();
             conn= DriverManager.getConnection(dc.getServer()+"/"+dc.getDatabase(), dc.getUsername(), dc.getPassword());
         } catch (SQLException e) {
-            new ErrorMessage("No se pudo crear la conexion").showMessage();
+            //new ErrorMessage("No se pudo crear la conexion").showMessage();
             Logging.warningLogging(e+"");
             conn=null;
         }
@@ -52,9 +54,9 @@ public class DBConnection {
         try {
             context=JAXBContext.newInstance(DataConnection.class);
             Unmarshaller um = context.createUnmarshaller();
-            dc = (DataConnection) um.unmarshal(Connection.class.getResource("/connectiondata/connectionData.xml"));
+            dc = (DataConnection) um.unmarshal(DBConnection.class.getResource("/connectiondata/connectionData.xml"));
         } catch (JAXBException e) {
-            new ErrorMessage("No se pudieron obtener los datos de conexión.").showMessage();
+            //new ErrorMessage("No se pudieron obtener los datos de conexión.").showMessage();
             Logging.warningLogging(e+"");
         }
         return dc;
