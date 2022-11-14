@@ -1,2 +1,4 @@
-package com.facegram.controllers;public class PostController {
+package com.facegram.controllers;
+
+public class PostController {
 }
