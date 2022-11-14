@@ -1,14 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.facegram.loginController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="450.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.facegram.loginController">
+   <children>
+      <Label layoutX="163.0" layoutY="132.0" text="LogIn">
+         <font>
+            <Font size="30.0" />
+         </font>
+      </Label>
+      <TextField layoutX="126.0" layoutY="195.0" promptText="User" />
+      <TextField layoutX="126.0" layoutY="241.0" promptText="Password" />
+      <Button layoutX="73.0" layoutY="359.0" mnemonicParsing="false" text="Register" />
+      <Button layoutX="282.0" layoutY="359.0" mnemonicParsing="false" text="LogIn" />
+      <ImageView fitHeight="87.0" fitWidth="109.0" layoutX="146.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
+   </children>
 </AnchorPane>

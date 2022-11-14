@@ -27,7 +27,7 @@ public class UserDAO extends User implements IDAO<User, Integer> {
     /**
      * Mátodo que crea un User en la base de datos
      * @param obj Objeto a insertar
-     * @return true o false si lo inserta o no
+     * @return true o false si lo crea o no
      */
     @Override
     public boolean insert(User obj) {

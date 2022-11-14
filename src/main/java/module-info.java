@@ -6,6 +6,5 @@ module com.facegram.facegram {
 
 
     opens com.facegram to javafx.fxml;
-    //opens com.facegram.model.DAO;
     exports com.facegram;
 }
