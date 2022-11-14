@@ -1,5 +1,6 @@
 package com.facegram.model.dataobject;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -130,5 +131,14 @@ public class Post {
      */
     public void setComments(List<Comment> comments) {
         this.comments = comments;
+    }
+
+    /**
+     * Añade al array de Comments un nuevo comentario en el caso de que esté vacio
+     * @param c Comentairio a añadir
+     */
+    public void addComment(Comment c) {
+        if(this.comments==null) this.comments = new ArrayList<Comment>();
+        this.comments.add(c);
     }
 }

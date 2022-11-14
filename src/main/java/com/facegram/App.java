@@ -1,5 +1,6 @@
 package com.facegram;
 
+import com.facegram.model.DAO.PostDAO;
 import com.facegram.model.DAO.UserDAO;
 import com.facegram.model.dataobject.User;
 import javafx.application.Application;
@@ -20,11 +21,6 @@ public class App extends Application {
     }
 
     public static void main(String[] args) {
-
-        //launch();
-
-
-
 
         //launch();
         User u = new User(1,"Juan","12345");
