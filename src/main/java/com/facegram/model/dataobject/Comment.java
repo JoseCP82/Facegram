@@ -1,10 +1,7 @@
 package com.facegram.model.dataobject;
 
 import java.util.Date;
-<<<<<<< HEAD
-=======
 
->>>>>>> 95d9ef677ab7d05365c38757718f2d1e77dc12bc
 public class Comment {
 
     protected int id;
