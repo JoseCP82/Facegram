@@ -1,6 +1,5 @@
 package com.facegram;
 
-import com.facegram.model.DAO.PostDAO;
 import com.facegram.model.DAO.UserDAO;
 import com.facegram.model.dataobject.User;
 import javafx.application.Application;
