@@ -1,9 +1,10 @@
-package com.facegram;
+package com.facegram.controllers;
 
+import com.facegram.App;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 
-public class loginController {
+public class LoginController {
 
     private Button btnLogIn;
     private Button btnRegister;
