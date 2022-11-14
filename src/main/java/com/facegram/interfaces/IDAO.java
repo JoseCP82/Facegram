@@ -3,12 +3,12 @@ package com.facegram.interfaces;
 import java.util.List;
 
 public interface IDAO<T,K> {
+
     /**
      * Insertar un objeto en la base de datos
-     * @param obj Objeto a insertar
      * @return True o false si se realizó con exito o no
      */
-    boolean insert(T obj);
+    boolean insert();
 
     /**
      * Obtiene un objeto de la base de datos
@@ -25,15 +25,20 @@ public interface IDAO<T,K> {
 
     /**
      * Actualiza los datos de un objeto existente en la base de datos
-     * @param obj Objeto a modificar
      * @return 1 o 0 si se realizó con exito o no
      */
-    int update(T obj);
+    int update();
 
     /**
      * Elimina un objeto de la base de datos
-     * @param obj Objeto a eliminar
      * @return 1 o 0 si se realizó con exito o no
      */
-    int delete(T obj);
+    int delete();
+
+    /**
+     * Obtiene una lista de objeto "x" para un objeto "y"
+     * @param obj Objeto "y" a buscar
+     * @return Lista de objetos "x"
+     */
+    List<T> getEntityOf(Object obj);
 }
