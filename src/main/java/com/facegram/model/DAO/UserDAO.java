@@ -190,7 +190,7 @@ public class UserDAO extends User implements IDAO<User, Integer> {
      */
     public List<User> getFollowers(){
         if(super.getFollowers()==null){
-            setFollowers(UserDAO.getAll());
+            setFollowers(UserDAO.getEntityOf(this));
         }
         return super.getFollowers();
     }
@@ -219,7 +219,7 @@ public class UserDAO extends User implements IDAO<User, Integer> {
         public List<User> getFollowereds(){
             if(super.getFollowereds()==null){
                 System.out.println("Consultando...");
-                setFollowereds((User) UserDAO.getAll());
+                setFollowereds((User) UserDAO.getEntityOf(this));
             }
             return super.getFollowereds();
         }
