@@ -4,6 +4,8 @@ import com.facegram.connection.DBConnection;
 import com.facegram.interfaces.IDAO;
 import com.facegram.logging.Logging;
 import com.facegram.model.dataobject.Post;
+import com.facegram.model.dataobject.User;
+
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -15,7 +17,7 @@ public class PostDAO extends Post implements IDAO<Post,Integer>  {
      * Consultas MySQL
      */
     private final static String INSERT = "INSERT INTO post (id_user, date, edit_Date, text) VALUES (?,?,?,?)";
-    private final static String SELECTALL = "SELECT id, date, edit_date, text FROM Post";
+    private final static String SELECTALLBYUSER = "SELECT id, date, edit_date, text FROM Post WHERE id_user=?";
 
     private final static String UPDATE = "UPDATE post SET edit_date=?, text=? WHERE id=?";
     private final static String DELETE = "DELETE FROM post WHERE id=?";
@@ -94,31 +96,29 @@ public class PostDAO extends Post implements IDAO<Post,Integer>  {
     }
 
     /**
-     * Obtiene todos los post del usuario
-     * @return Lista de post o null si no existe ninguno.
+     * Método que busca todos los Users de la base de datos
+     * @return la lista de Users o null si los ha encontrado o no
      */
-    @Override
-    public List<Post> getAll() {
+    public List<Post> getPostsOfUser(User u) {
         List<Post> result = new ArrayList<Post>();
-        Connection conn = DBConnection.getConnect();
-        if(conn != null) {
+        Connection miCon = DBConnection.getConnect();
+        if(miCon!=null){
             PreparedStatement ps;
-            try {
-                ps = conn.prepareStatement(SELECTALL);
-                if(ps.execute()) {
-                    ResultSet rs = ps.getResultSet();
-                    while(rs.next()) {
-                        Post p = new Post(rs.getInt("id"),
-                                rs.getString("text"),
-                                rs.getDate("date"),
-                                rs.getDate("editDate"));
-                        result.add(p);
+            try{
+                ps = miCon.prepareStatement(SELECTALLBYUSER);
+                ps.setInt(1, u.getId());
+                if(ps.execute()){
+                    ResultSet rs=ps.getResultSet();
+                    while(rs.next()){
+                        Post p=new Post(rs.getInt("id"),rs.getString("text"),rs.getDate("date"),rs.getDate("edit_Date"),rs.getObject("id_user"));
+                        result.add(aux);
                     }
                     rs.close();
                 }
                 ps.close();
-            } catch (SQLException e) {
-                e.printStackTrace();
+            }catch (SQLException e){
+                Logging.warningLogging(e+"");
+                result=null;
             }
         }
         return result;
