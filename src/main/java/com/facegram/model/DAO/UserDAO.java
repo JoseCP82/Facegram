@@ -131,7 +131,6 @@ public class UserDAO extends User implements IDAO<User, Integer> {
      * Método que busca todos los Users de la base de datos
      * @return la lista de Users o null si los ha encontrado o no
      */
-    @Override
     public List<User> getAll() {
         List<User> result = new ArrayList<User>();
         Connection miCon = DBConnection.getConnect();
@@ -153,7 +152,6 @@ public class UserDAO extends User implements IDAO<User, Integer> {
                 result=null;
             }
         }
-
         return result;
     }
 
