@@ -18,12 +18,6 @@ public interface IDAO<T,K> {
     T get(K id);
 
     /**
-     * Obtiene una coleccion de objetos encontrados en la base de datos
-     * @return Coleccion de objetos
-     */
-    List<T> getAll();
-
-    /**
      * Actualiza los datos de un objeto existente en la base de datos
      * @return 1 o 0 si se realizó con exito o no
      */
