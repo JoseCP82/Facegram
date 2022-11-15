@@ -34,11 +34,4 @@ public interface IDAO<T,K> {
      * @return 1 o 0 si se realizó con exito o no
      */
     int delete();
-
-    /**
-     * Obtiene una lista de objeto "x" para un objeto "y"
-     * @param obj Objeto "y" a buscar
-     * @return Lista de objetos "x"
-     */
-    List<T> getEntityOf(Object obj);
 }
