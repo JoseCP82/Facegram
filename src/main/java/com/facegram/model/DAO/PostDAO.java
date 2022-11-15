@@ -4,7 +4,6 @@ import com.facegram.connection.DBConnection;
 import com.facegram.interfaces.IDAO;
 import com.facegram.logging.Logging;
 import com.facegram.model.dataobject.Post;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -176,5 +175,15 @@ public class PostDAO extends Post implements IDAO<Post,Integer>  {
             }
         }
         return result;
+    }
+
+    /**
+     * Obtiene una lista de post para un objeto "x"
+     * @param obj Objeto "x" a buscar
+     * @return Lista de post
+     */
+    @Override
+    public List<Post> getEntityOf(Object obj) {
+        return null;
     }
 }
