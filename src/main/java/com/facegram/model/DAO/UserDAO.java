@@ -25,13 +25,14 @@ public class UserDAO extends User implements IDAO<User, Integer> {
     /**
      * Sentencias de UserDAO
      */
-    private final static String insertSQL="INSERT INTO user (name,password) VALUES (?,?)";
-    private final static String getSQL="SELECT (id, name, pasword) FROM user WHERE id=?";
+    private final static String INSERT ="INSERT INTO user (name,password) VALUES (?,?)";
+    private final static String SELECTBYID ="SELECT (id, name, pasword) FROM user WHERE id=?";
 
-    private final static String getByNameSQL="SELECT (id, name, pasword) FROM user WHERE name=?";
-    private final static String getAllSQL="SELECT * FROM user";
-    private final static String updateSQL="UPDATE user SET, name=?, password=? WHERE id=?";
-    private final static String deleteSQL="DELETE FROM user WHERE id=?";
+    private final static String SELECTBYNAME ="SELECT (id, name, pasword) FROM user WHERE name=?";
+    private final static String SELECTFOLLOWERSBYUSER="SELECT (id, name, password) FROM user WHERE name=?";
+    private final static String SELECTALL ="SELECT * FROM user";
+    private final static String UPDATE ="UPDATE user SET, name=?, password=? WHERE id=?";
+    private final static String DELETE ="DELETE FROM user WHERE id=?";
 
     /**
      * Mátodo que crea un User en la base de datos
@@ -45,7 +46,7 @@ public class UserDAO extends User implements IDAO<User, Integer> {
             if(miCon!=null){
                 PreparedStatement ps;
                 try{
-                    ps = miCon.prepareStatement(insertSQL,Statement.RETURN_GENERATED_KEYS);
+                    ps = miCon.prepareStatement(INSERT,Statement.RETURN_GENERATED_KEYS);
                     ps.setString(1,this.name);
                     ps.setString(2,this.password);
                     ps.executeUpdate();
@@ -77,7 +78,7 @@ public class UserDAO extends User implements IDAO<User, Integer> {
         if(miCon!=null){
             PreparedStatement ps;
             try {
-                ps = miCon.prepareStatement(getSQL);
+                ps = miCon.prepareStatement(SELECTBYID);
                 ps.setInt(1,id);
                 if(ps.execute()){
                     ResultSet rs = ps.getResultSet();
@@ -108,7 +109,7 @@ public class UserDAO extends User implements IDAO<User, Integer> {
         if(miCon!=null) {
             PreparedStatement ps;
             try {
-                ps = miCon.prepareStatement(getByNameSQL);
+                ps = miCon.prepareStatement(SELECTBYNAME);
                 ps.setString(1, name);
                 if (ps.execute()) {
                     ResultSet rs = ps.getResultSet();
@@ -137,7 +138,36 @@ public class UserDAO extends User implements IDAO<User, Integer> {
         if(miCon!=null){
             PreparedStatement ps;
             try{
-                ps = miCon.prepareStatement(getAllSQL);
+                ps = miCon.prepareStatement(SELECTALL);
+                if(ps.execute()){
+                    ResultSet rs=ps.getResultSet();
+                    while(rs.next()){
+                        User aux = new User(rs.getInt("id"),rs.getString("name"),rs.getString("password"));
+                        result.add(aux);
+                    }
+                    rs.close();
+                }
+                ps.close();
+            }catch (SQLException e){
+                Logging.warningLogging(e+"");
+                result=null;
+            }
+        }
+        return result;
+    }
+
+    /**
+     * Método que busca todos los Followers y los followereds de un User de la base de datos
+     * @return la lista de Users o null si los ha encontrado o no
+     */
+    public List<User> getFollowOfUser(User u) {
+        List<User> result = new ArrayList<User>();
+        Connection miCon = DBConnection.getConnect();
+        if(miCon!=null){
+            PreparedStatement ps;
+            try{
+                ps = miCon.prepareStatement(SELECTFOLLOWERSBYUSER);
+                ps.setString(1, u.getName());
                 if(ps.execute()){
                     ResultSet rs=ps.getResultSet();
                     while(rs.next()){
@@ -161,7 +191,7 @@ public class UserDAO extends User implements IDAO<User, Integer> {
      */
     public List<Post> getPosts(){
         if(super.getPosts()==null){
-            setPosts(PostDAO.getEntityOf(this));
+            setPosts(PostDAO.getPostOfUser(this));
         }
         return super.getPosts();
     }
@@ -188,7 +218,7 @@ public class UserDAO extends User implements IDAO<User, Integer> {
      */
     public List<User> getFollowers(){
         if(super.getFollowers()==null){
-            setFollowers(UserDAO.getEntityOf(this));
+            setFollowers((User) this.getFollowOfUser(this));
         }
         return super.getFollowers();
     }
@@ -199,7 +229,7 @@ public class UserDAO extends User implements IDAO<User, Integer> {
      * @param u follower que se va a añadir a la lista de Followers
      * @return
      */
-    public List<User> addFollowers(User u){
+    public void addFollowers(User u){
         boolean result=false;
         u.setFollowers(this);
         UserDAO uDAO = new UserDAO(u);
@@ -216,8 +246,7 @@ public class UserDAO extends User implements IDAO<User, Integer> {
          */
         public List<User> getFollowereds(){
             if(super.getFollowereds()==null){
-                System.out.println("Consultando...");
-                setFollowereds((User) UserDAO.getEntityOf(this));
+                setFollowereds((User) this.getFollowOfUser(this));
             }
             return super.getFollowereds();
         }
@@ -226,15 +255,16 @@ public class UserDAO extends User implements IDAO<User, Integer> {
          *Método que añade un Followered a la lista de Followereds de un User
          * @param u followered que se va a añadir a la lista de Followereds
          */
-        public void addFollowereds(User u){
-            boolean result=false;
+        public void addFollowereds(User u) {
+            boolean result = false;
             u.setFollowereds(this);
             UserDAO uDAO = new UserDAO(u);
-            if(u.getId()==-1){
+            if (u.getId() == -1) {
                 uDAO.insert();
-            }else{
+            } else {
                 uDAO.update();
             }
+        }
 
     /**
      * Método que edita los campos de la tabla User en la base de datos
@@ -248,7 +278,7 @@ public class UserDAO extends User implements IDAO<User, Integer> {
             if(miCon!=null){
                 PreparedStatement ps;
                 try {
-                    ps = miCon.prepareStatement(updateSQL);
+                    ps = miCon.prepareStatement(UPDATE);
                     ps.setInt(1, this.id);
                     ps.setString(2, this.name);
                     ps.setString(3, this.password);
@@ -276,7 +306,7 @@ public class UserDAO extends User implements IDAO<User, Integer> {
             if(miCon!=null){
                 PreparedStatement ps;
                 try {
-                    ps=miCon.prepareStatement(deleteSQL);
+                    ps=miCon.prepareStatement(DELETE);
                     ps.setInt(1, this.id);
                     if(ps.executeUpdate()==1){
                         this.id=-1;
