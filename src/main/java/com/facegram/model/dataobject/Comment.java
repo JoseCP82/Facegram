@@ -37,6 +37,11 @@ public class Comment {
         this.date = null;
     }
 
+    public Comment(int anInt) {
+
+    }
+
+
     /**
      * Obtiene el id del comentario
      * @return Id del comentario
