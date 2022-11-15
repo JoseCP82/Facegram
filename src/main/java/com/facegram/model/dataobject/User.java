@@ -1,7 +1,6 @@
 package com.facegram.model.dataobject;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
@@ -30,6 +29,10 @@ public class User {
         this.posts = null;
         this.followereds = null;
         this.followers = null;
+    }
+    public User(String name, String password) {
+        this.name = name;
+        this.password = password;
     }
     public User(int id, String name, String password){
         this.id = id;
@@ -92,11 +95,12 @@ public class User {
     public void setFollowers(User u){
         this.followereds=u.followereds;
     }
-    public void addFollowers(User u){
+    public List<User> addFollowers(User u){
         if(this.followers==null) {
             this.followers=new ArrayList<User>();
             this.followers.add(u);
         }
+        return null;
     }
 
     /**

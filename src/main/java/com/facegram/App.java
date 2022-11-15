@@ -22,9 +22,9 @@ public class App extends Application {
     public static void main(String[] args) {
 
         //launch();
-        User u = new User("Miguel","12345");
+        User u = new User("Fernando","12345");
         UserDAO uDAO = new UserDAO(u);
-        uDAO.insert(u);
+        uDAO.insert();
 
     }
 }

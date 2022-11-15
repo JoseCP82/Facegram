@@ -132,7 +132,7 @@ public class UserDAO extends User implements IDAO<User, Integer> {
      * @return la lista de Users o null si los ha encontrado o no
      */
     @Override
-    public static List<User> getAll() {
+    public List<User> getAll() {
         List<User> result = new ArrayList<User>();
         Connection miCon = DBConnection.getConnect();
         if(miCon!=null){
@@ -163,8 +163,7 @@ public class UserDAO extends User implements IDAO<User, Integer> {
      */
     public List<Post> getPosts(){
         if(super.getPosts()==null){
-            System.out.println("Consultando...");
-            setPosts(PostDAO.getAll(this));
+            setPosts(PostDAO.getEntityOf(this));
         }
         return super.getPosts();
     }
@@ -182,6 +181,7 @@ public class UserDAO extends User implements IDAO<User, Integer> {
         }else{
             pDAO.update();
         }
+        super.addPosts(pDAO);
     }
 
     /**
@@ -190,24 +190,26 @@ public class UserDAO extends User implements IDAO<User, Integer> {
      */
     public List<User> getFollowers(){
         if(super.getFollowers()==null){
-            System.out.println("Consultando...");
-            setFollowers((User) UserDAO.getAll());
+            setFollowers(UserDAO.getAll());
         }
         return super.getFollowers();
     }
 
     /**
-     *Método que añade un Follower a la lista de Followers de un User
+     * Método que añade un Follower a la lista de Followers de un User
+     *
      * @param u follower que se va a añadir a la lista de Followers
+     * @return
      */
-    public void addFollowers(User u){
+    public List<User> addFollowers(User u){
         boolean result=false;
         u.setFollowers(this);
         UserDAO uDAO = new UserDAO(u);
         if(u.getId()==-1){
             uDAO.insert();
-        }else{
+        }else {
             uDAO.update();
+        }
     }
 
         /**
