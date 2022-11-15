@@ -15,15 +15,13 @@ public class CommentDAO extends Comment implements IDAO<Comment, Integer> {
 
     private final static String INSERT="INSERT INTO comment (text) VALUES (?))";
     private final static String SELECTBYID="SELECT * FROM comment WHERE id=?";
-    private final static String SELECTALL="SELECT * FROM comment WHERE id_user=?";
+    private final static String SELECTCOMMENTOFPOST="SELECT comment FROM Post WHERE id_post=?";
     private final static String DELETE="DELETE FROM comment WHERE id=?";
 
     public CommentDAO(int id, User user, Post post, String text, Date date) {
         super(id, user, post, text, date);
     }
     public CommentDAO() { super(); }
-
-
 
     @Override
     public boolean insert() {
@@ -55,19 +53,17 @@ public class CommentDAO extends Comment implements IDAO<Comment, Integer> {
         return null;
     }
 
-    @Override
-    public List<Comment> getAll() {
+    public List<Comment> getCommentsofPost() {
         List<Comment> result = new ArrayList<Comment>();
         Connection conn = DBConnection.getConnect();
         if(conn!=null){
             PreparedStatement ps;
             try{
-                ps = conn.prepareStatement(SELECTALL);
+                ps = conn.prepareStatement(SELECTCOMMENTOFPOST);
                 if(ps.execute()){
                     ResultSet rs = ps.getResultSet();
                     while(rs.next()){
-                        Comment c = new Comment(rs.getInt("id"),
-                                rs.getString("Post"));
+                        Comment c = new Comment(c.setPost(new Post(rs.getInt("id_post")));
                         result.add(c);
                     }
                     rs.close();
@@ -77,7 +73,7 @@ public class CommentDAO extends Comment implements IDAO<Comment, Integer> {
                 e.printStackTrace();
             }
         }
-        return null;
+        return result;
     }
 
     @Override

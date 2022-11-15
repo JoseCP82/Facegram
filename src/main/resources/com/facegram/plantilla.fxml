@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.effect.*?>
 <?import javafx.scene.layout.*?>
 
 
-<AnchorPane prefHeight="480.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.facegram.loginController">
-   <effect>
-      <ColorAdjust brightness="-0.82" contrast="-0.91" hue="-0.74" saturation="-0.72" />
-   </effect>
-</AnchorPane>
+<AnchorPane prefHeight="480.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.facegram.loginController" />
+
+<AnchorPane prefHeight="480.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.facegram.loginController" />
+

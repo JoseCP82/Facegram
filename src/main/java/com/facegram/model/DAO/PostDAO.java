@@ -17,7 +17,12 @@ public class PostDAO extends Post implements IDAO<Post,Integer>  {
      * Consultas MySQL
      */
     private final static String INSERT = "INSERT INTO post (id_user, date, edit_Date, text) VALUES (?,?,?,?)";
+
     private final static String SELECTALLBYUSER = "SELECT id, date, edit_date, text FROM Post WHERE id_user=?";
+
+
+    private final static String SELECTALL = "SELECT id, date, edit_date, text FROM post";
+    private final static String SELECTBYID = "SELECT id, id_user, date, edit_date, text FROM post WHERE id=?";
 
     private final static String UPDATE = "UPDATE post SET edit_date=?, text=? WHERE id=?";
     private final static String DELETE = "DELETE FROM post WHERE id=?";
@@ -35,7 +40,10 @@ public class PostDAO extends Post implements IDAO<Post,Integer>  {
      * Constructor con parametro Post
      * @param post Post a instanciar
      */
-    public PostDAO(Post post){	super(post.getId(),post.getText(), post.getDate(), post.getEditDate());}
+    public PostDAO(Post post){
+        this(post.getId(),post.getText(), post.getDate(), post.getEditDate());
+        this.owner = post.getOwner();
+    }
 
     /**
      * Constructor con parametro id
@@ -92,14 +100,41 @@ public class PostDAO extends Post implements IDAO<Post,Integer>  {
      */
     @Override
     public Post get(Integer id) {
-        return null;
+        Connection conn = DBConnection.getConnect();
+        if(conn != null) {
+            PreparedStatement ps;
+            try {
+                ps = conn.prepareStatement(SELECTBYID);
+                ps.setInt(1, id);
+                if(ps.execute()) {
+                    ResultSet rs = ps.getResultSet();
+                    if(rs.next()) {
+                        this.id = rs.getInt("id");
+                        this.date = rs.getDate("date");
+                        this.editDate = rs.getDate("edit_date");
+                        int id_user = rs.getInt("id_user");
+                        //eager
+                        this.owner = new UserDAO(id_user);
+                    }
+                    rs.close();
+                }
+                ps.close();
+            } catch (SQLException e) {
+                Logging.warningLogging(e+"");
+            }
+        }
+        return this;
     }
 
     /**
      * Método que busca todos los Users de la base de datos
      * @return la lista de Users o null si los ha encontrado o no
      */
+
     public List<Post> getPostsOfUser(User u) {
+
+    public List<Post> getAll() {
+
         List<Post> result = new ArrayList<Post>();
         Connection miCon = DBConnection.getConnect();
         if(miCon!=null){
@@ -116,9 +151,14 @@ public class PostDAO extends Post implements IDAO<Post,Integer>  {
                     rs.close();
                 }
                 ps.close();
+
             }catch (SQLException e){
                 Logging.warningLogging(e+"");
                 result=null;
+
+            } catch (SQLException e) {
+                Logging.warningLogging(e+"");
+
             }
         }
         return result;
@@ -169,21 +209,11 @@ public class PostDAO extends Post implements IDAO<Post,Integer>  {
                     ps.close();
                     result = 1;
                 } catch (SQLException e) {
-                    e.printStackTrace();
+                    Logging.warningLogging(e+"");
                     result = 0;
                 }
             }
         }
         return result;
-    }
-
-    /**
-     * Obtiene una lista de post para un objeto "x"
-     * @param obj Objeto "x" a buscar
-     * @return Lista de post
-     */
-    @Override
-    public List<Post> getEntityOf(Object obj) {
-        return null;
     }
 }
