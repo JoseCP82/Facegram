@@ -155,6 +155,11 @@ public class PostDAO extends Post implements IDAO<Post,Integer>  {
         return result;
     }
 
+    /**
+     * Obiene todos los post de un usuario
+     * @param user Usuario del que queremos sus post
+     * @return Lista de post
+     */
     public static List<Post> getPostOfUser(User user){
         List<Post> result = new ArrayList<Post>();
         Connection conn = DBConnection.getConnect();
