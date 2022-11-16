@@ -2,6 +2,7 @@ package com.facegram.model.DAO;
 
 import com.facegram.connection.DBConnection;
 import com.facegram.interfaces.IDAO;
+import com.facegram.logging.Logging;
 import com.facegram.model.dataobject.Comment;
 import com.facegram.model.dataobject.Post;
 import com.facegram.model.dataobject.User;
@@ -15,12 +16,20 @@ public class CommentDAO extends Comment implements IDAO<Comment, Integer> {
 
     private final static String INSERT="INSERT INTO comment (text) VALUES (?))";
     private final static String SELECTBYID="SELECT * FROM comment WHERE id=?";
-    private final static String SELECTCOMMENTOFPOST="SELECT comment FROM Post WHERE id_post=?";
+    private final static String SELECTBYPOST="SELECT comment FROM Post WHERE id_post=?";
     private final static String DELETE="DELETE FROM comment WHERE id=?";
 
-    public CommentDAO(int id, User user, Post post, String text, Date date) {
-        super(id, user, post, text, date);
+    public CommentDAO(int id, String text, Date date) {
+        super(id, text, date);
     }
+
+    public CommentDAO(Comment comment) {
+        this(comment.getId(),comment.getText(),comment.getDate());
+        this.post = comment.getPost();
+    }
+
+    public CommentDAO(int id){ this.get(id); }
+
     public CommentDAO() { super(); }
 
     @Override
@@ -41,7 +50,7 @@ public class CommentDAO extends Comment implements IDAO<Comment, Integer> {
                     ps.close();
                     rs.close();
                 } catch (SQLException e) {
-                    e.printStackTrace();//????
+                    Logging.warningLogging(e+"");
                 }
             }
         }
@@ -53,24 +62,28 @@ public class CommentDAO extends Comment implements IDAO<Comment, Integer> {
         return null;
     }
 
-    public List<Comment> getCommentsofPost() {
+    public List<Comment> getCommentsofPost(Post post) {
         List<Comment> result = new ArrayList<Comment>();
         Connection conn = DBConnection.getConnect();
         if(conn!=null){
             PreparedStatement ps;
             try{
-                ps = conn.prepareStatement(SELECTCOMMENTOFPOST);
+                ps = conn.prepareStatement(SELECTBYPOST);
+                ps.setInt(1, post.getId());
                 if(ps.execute()){
                     ResultSet rs = ps.getResultSet();
                     while(rs.next()){
-                        Comment c = new Comment(c.setPost(new Post(rs.getInt("id_post")));
+                        Comment c = new Comment(rs.getInt("id"),
+                                rs.getString("text"),
+                                rs.getDate("date")
+                                );
                         result.add(c);
                     }
                     rs.close();
                 }
                 ps.close();
             } catch (SQLException e){
-                e.printStackTrace();
+                Logging.warningLogging(e+"");
             }
         }
         return result;
@@ -96,7 +109,7 @@ public class CommentDAO extends Comment implements IDAO<Comment, Integer> {
                     }
                     ps.close();
                 } catch (SQLException e) {
-                    e.printStackTrace();//???
+                    Logging.warningLogging(e+"");
                 }
             }
         }
