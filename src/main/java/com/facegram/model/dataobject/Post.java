@@ -141,4 +141,14 @@ public class Post {
         if(this.comments==null) this.comments = new ArrayList<Comment>();
         this.comments.add(c);
     }
+
+    @Override
+    public String toString() {
+        return "Post{" +
+                "text='" + text + '\'' +
+                ", date=" + date +
+                ", owner=" + owner +
+                ", comments=" + comments +
+                '}';
+    }
 }

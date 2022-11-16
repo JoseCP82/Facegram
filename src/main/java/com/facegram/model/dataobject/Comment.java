@@ -13,15 +13,11 @@ public class Comment {
     /**
      * Constructor parametrizado
      * @param id Identificacion asignada al comentario
-     * @param user Usuario que publica el comentario
-     * @param post Post en el que se publica el comentario
      * @param text Texto que contiene el comentario
      * @param date Fecha de publicación del comentario
      */
-    public Comment(int id, User user, Post post, String text, Date date) {
+    public Comment(int id, String text, Date date) {
         this.id = id;
-        this.user = user;
-        this.post = post;
         this.text = text;
         this.date = date;
     }
@@ -31,8 +27,6 @@ public class Comment {
      */
     public Comment() {
         this.id=-1;
-        this.user = null;
-        this.post = null;
         this.text = "";
         this.date = null;
     }
