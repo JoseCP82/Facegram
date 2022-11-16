@@ -113,7 +113,6 @@ public class PostDAO extends Post implements IDAO<Post,Integer>  {
                         this.date = rs.getDate("date");
                         this.editDate = rs.getDate("edit_date");
                         int id_user = rs.getInt("id_user");
-                        //eager
                         this.owner = new UserDAO(id_user);
                     }
                     rs.close();
@@ -127,38 +126,58 @@ public class PostDAO extends Post implements IDAO<Post,Integer>  {
     }
 
     /**
-     * Método que busca todos los Users de la base de datos
-     * @return la lista de Users o null si los ha encontrado o no
+     * Obtiene todos los post del usuario
+     * @return Lista de post o null si no existe ninguno.
      */
-
-    public List<Post> getPostsOfUser(User u) {
-
     public List<Post> getAll() {
-
         List<Post> result = new ArrayList<Post>();
-        Connection miCon = DBConnection.getConnect();
-        if(miCon!=null){
+        Connection conn = DBConnection.getConnect();
+        if(conn != null) {
             PreparedStatement ps;
-            try{
-                ps = miCon.prepareStatement(SELECTALLBYUSER);
-                ps.setInt(1, u.getId());
-                if(ps.execute()){
-                    ResultSet rs=ps.getResultSet();
-                    while(rs.next()){
-                        Post p=new Post(rs.getInt("id"),rs.getString("text"),rs.getDate("date"),rs.getDate("edit_Date"),rs.getObject("id_user"));
-                        result.add(aux);
+            try {
+                ps = conn.prepareStatement(SELECTALL);
+                if(ps.execute()) {
+                    ResultSet rs = ps.getResultSet();
+                    while(rs.next()) {
+                        Post p = new Post(rs.getInt("id"),
+                                rs.getString("text"),
+                                rs.getDate("date"),
+                                rs.getDate("editDate"));
+                        result.add(p);
                     }
                     rs.close();
                 }
                 ps.close();
-
-            }catch (SQLException e){
-                Logging.warningLogging(e+"");
-                result=null;
-
             } catch (SQLException e) {
                 Logging.warningLogging(e+"");
+            }
+        }
+        return result;
+    }
 
+    public static List<Post> getPostOfUser(User user){
+        List<Post> result = new ArrayList<Post>();
+        Connection conn = DBConnection.getConnect();
+        if(conn != null) {
+            PreparedStatement ps;
+            try {
+                ps = conn.prepareStatement(SELECTALLBYUSER);
+                ps.setInt(1, user.getId());
+                if(ps.execute()) {
+                    ResultSet rs = ps.getResultSet();
+                    while(rs.next()) {
+                        Post post = new Post(rs.getInt("id"),
+                                rs.getString("text"),
+                                rs.getDate("date"),
+                                rs.getDate("edit_date"));
+                        post.setOwner(new User(rs.getInt("id_user")));
+                        result.add(post);
+                    }
+                    rs.close();
+                }
+                ps.close();
+            } catch (SQLException e) {
+                Logging.warningLogging(e+"");
             }
         }
         return result;
