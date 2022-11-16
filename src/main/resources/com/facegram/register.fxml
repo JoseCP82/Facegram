@@ -4,16 +4,16 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="450.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.facegram.Register">
+<AnchorPane prefHeight="480.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.facegram.Register">
    <children>
-      <Label layoutX="146.0" layoutY="106.0" text="Register">
+      <Label layoutX="109.0" layoutY="104.0" text="Register">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <TextField layoutX="126.0" layoutY="196.0" promptText="User" />
-      <TextField layoutX="126.0" layoutY="250.0" promptText="Password" />
-      <Button layoutX="74.0" layoutY="354.0" mnemonicParsing="false" text="Cancel" />
-      <Button layoutX="275.0" layoutY="354.0" mnemonicParsing="false" text="Register" />
+      <TextField layoutX="89.0" layoutY="194.0" promptText="User" />
+      <TextField layoutX="89.0" layoutY="248.0" promptText="Password" />
+      <Button layoutX="37.0" layoutY="352.0" mnemonicParsing="false" text="Cancel" />
+      <Button layoutX="238.0" layoutY="352.0" mnemonicParsing="false" text="Register" />
    </children>
 </AnchorPane>
