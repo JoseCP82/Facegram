@@ -5,17 +5,17 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="450.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.facegram.controllers.LoginController">
+<AnchorPane prefHeight="480.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/16" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.facegram.controllers.LoginController">
    <children>
-      <Label layoutX="163.0" layoutY="132.0" text="LogIn">
+      <Label layoutX="123.0" layoutY="114.0" text="LogIn">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <TextField layoutX="126.0" layoutY="195.0" promptText="User" />
-      <TextField layoutX="126.0" layoutY="241.0" promptText="Password" />
-      <Button layoutX="73.0" layoutY="359.0" mnemonicParsing="false" text="Register" />
-      <Button layoutX="282.0" layoutY="359.0" mnemonicParsing="false" text="LogIn" />
+      <TextField layoutX="86.0" layoutY="177.0" promptText="User" />
+      <TextField layoutX="86.0" layoutY="223.0" promptText="Password" />
+      <Button layoutX="33.0" layoutY="341.0" mnemonicParsing="false" text="Register" />
+      <Button layoutX="242.0" layoutY="341.0" mnemonicParsing="false" text="LogIn" />
       <ImageView fitHeight="87.0" fitWidth="109.0" layoutX="146.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>

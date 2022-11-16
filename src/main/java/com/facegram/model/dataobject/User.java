@@ -95,12 +95,11 @@ public class User {
     public void setFollowers(User u){
         this.followereds=u.followereds;
     }
-    public List<User> addFollowers(User u){
+    public void addFollowers(User u){
         if(this.followers==null) {
             this.followers=new ArrayList<User>();
             this.followers.add(u);
         }
-        return null;
     }
 
     /**
