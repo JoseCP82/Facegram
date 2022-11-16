@@ -10,11 +10,15 @@
             <Button fx:id="btnClose" layoutX="414.0" layoutY="23.0" mnemonicParsing="false" onAction="#closeApp" text="Close" />
             <Button layoutX="14.0" layoutY="23.0" mnemonicParsing="false" text="Go Back" />
          </children></Pane>
-      <Pane layoutY="71.0" prefHeight="320.0" prefWidth="480.0" />
       <Pane fx:id="headerPane1" layoutY="530.0" prefHeight="71.0" prefWidth="480.0" style="-fx-background-color: #A9A9A9;">
          <children>
-            <Button fx:id="btnCreate" layoutX="414.0" layoutY="23.0" mnemonicParsing="false" text="Create" />
+            <Button fx:id="btnCreate" layoutX="414.0" layoutY="23.0" mnemonicParsing="false" onAction="#createPost" text="Create" />
             <Button layoutX="337.0" layoutY="23.0" mnemonicParsing="false" text="Search" />
          </children></Pane>
+      <ScrollPane layoutY="71.0" prefHeight="459.0" prefWidth="480.0">
+        <content>
+          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="530.0" prefWidth="479.0" />
+        </content>
+      </ScrollPane>
    </children>
 </AnchorPane>
