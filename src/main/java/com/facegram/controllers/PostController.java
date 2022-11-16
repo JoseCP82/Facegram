@@ -8,12 +8,15 @@ import com.facegram.utils.chronometer.Chronometer;
 import com.facegram.utils.message.ConfirmMessage;
 import com.facegram.utils.message.Message;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
@@ -34,6 +37,11 @@ public class PostController implements Initializable {
     private Chronometer chronometer;
     private PostDAO pDAO;
 
+    /**
+     * Inicializa los elementos del controlador
+     * @param url
+     * @param resourceBundle
+     */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         chronometer = new Chronometer();
@@ -47,8 +55,9 @@ public class PostController implements Initializable {
      * Método que crea un nuevo post
      */
     @FXML
-    public void createPost(){
-
+    public void createPost() throws IOException {
+        AnchorPane newPostFXML = FXMLLoader.load(getClass().getResource("newPost.fxml"));
+        this.anchorBody.getChildren().setAll(newPostFXML);
     }
 
     /**
