@@ -2,7 +2,6 @@ package com.facegram.controllers;
 
 import com.facegram.logging.Logging;
 import com.facegram.model.DAO.PostDAO;
-import com.facegram.model.DAO.UserDAO;
 import com.facegram.model.dataobject.Post;
 import com.facegram.utils.chronometer.Chronometer;
 import com.facegram.utils.message.ConfirmMessage;
@@ -15,7 +14,6 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -56,8 +54,17 @@ public class PostController implements Initializable {
      */
     @FXML
     public void createPost() throws IOException {
-        AnchorPane newPostFXML = FXMLLoader.load(getClass().getResource("newPost.fxml"));
-        this.anchorBody.getChildren().setAll(newPostFXML);
+        loadFXMLChildren("newPost.fxml");
+
+    }
+
+    /**
+     * Carga en el fxml principal un hijo (otro fxml)
+     * @param fxml Nombre del fxml a cargar
+     */
+    private void loadFXMLChildren(String fxml) throws IOException {
+        AnchorPane anchor = FXMLLoader.load(getClass().getResource(fxml));
+        this.anchorBody.getChildren().setAll(anchor);
     }
 
     /**

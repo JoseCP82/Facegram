@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="595.0" prefWidth="400.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.facegram.controllers.PostController">
+<AnchorPane prefHeight="480.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.facegram.controllers.PostController">
    <children>
       <AnchorPane fx:id="anchorBody" layoutY="71.0" prefHeight="459.0" prefWidth="480.0" />
       <Pane fx:id="headerPane" prefHeight="71.0" prefWidth="480.0" style="-fx-background-color: #A9A9A9;">

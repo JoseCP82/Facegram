@@ -20,7 +20,6 @@ public class PostDAO extends Post implements IDAO<Post,Integer>  {
 
     private final static String SELECTALLBYUSER = "SELECT id, date, edit_date, text FROM Post WHERE id_user=?";
 
-
     private final static String SELECTALL = "SELECT id, date, edit_date, text FROM post";
     private final static String SELECTBYID = "SELECT id, id_user, date, edit_date, text FROM post WHERE id=?";
 
