@@ -191,7 +191,7 @@ public class UserDAO extends User implements IDAO<User, Integer> {
      */
     public List<Post> getPosts(){
         if(super.getPosts()==null){
-            setPosts(PostDAO.getPostOfUser(this));
+            setPosts(PostDAO.getPostO(this));
         }
         return super.getPosts();
     }
