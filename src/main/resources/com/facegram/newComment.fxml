@@ -1,30 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.Pane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="480.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.facegram.controllers.PostController">
+<AnchorPane prefHeight="340.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.facegram.controllers.CommentController">
    <children>
-      <Pane fx:id="headerPane" prefHeight="70.0" prefWidth="320.0" style="-fx-background-color: #A9A9A9;">
-         <children>
-            <Button fx:id="btnClose" layoutX="266.0" layoutY="23.0" mnemonicParsing="false" onAction="#closeApp" prefHeight="26.0" prefWidth="40.0" text="X" />
-            <Button fx:id="btnClose1" layoutX="212.0" layoutY="23.0" mnemonicParsing="false" onAction="#closeApp" prefHeight="26.0" prefWidth="40.0" text="-" />
-            <Text layoutX="14.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FaceGram" wrappingWidth="177.39996337890625">
-               <font>
-                  <Font size="35.0" />
-               </font>
-            </Text>
-         </children></Pane>
-      <AnchorPane layoutY="70.0" minHeight="0.0" minWidth="0.0" prefHeight="340.0" prefWidth="320.0" />
-      <Pane fx:id="headerPane1" layoutY="410.0" prefHeight="70.0" prefWidth="320.0" style="-fx-background-color: #A9A9A9;">
-         <children>
-            <Button layoutX="86.0" layoutY="23.0" mnemonicParsing="false" text="Search" />
-            <Button fx:id="btnCreate" layoutX="244.0" layoutY="21.0" mnemonicParsing="false" onAction="#createPost" prefHeight="25.0" prefWidth="59.0" text="Create" />
-            <Button layoutX="177.0" layoutY="23.0" mnemonicParsing="false" text="New" />
-            <Button layoutX="14.0" layoutY="23.0" mnemonicParsing="false" text="Back" />
-         </children></Pane>
+      <Button fx:id="buttonAdd" layoutX="195.0" layoutY="278.0" mnemonicParsing="false" onAction="#addButton" prefHeight="39.0" prefWidth="110.0" text="Public Comment" />
+      <TextArea fx:id="textComment" layoutX="13.0" layoutY="14.0" prefHeight="251.0" prefWidth="294.0" promptText="Insert Here Your Comment" wrapText="true" />
+      <Button fx:id="buttonClose" layoutX="14.0" layoutY="278.0" mnemonicParsing="false" onAction="#cancelButton" prefHeight="39.0" prefWidth="110.0" text="Back" />
    </children>
 </AnchorPane>
