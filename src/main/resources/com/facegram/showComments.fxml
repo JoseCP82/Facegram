@@ -1,24 +1,30 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane prefHeight="320.0" prefWidth="480.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.facegram.controllers.PostController">
+<AnchorPane prefHeight="480.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.facegram.controllers.PostController">
    <children>
-      <Pane fx:id="headerPane" prefHeight="71.0" prefWidth="480.0" style="-fx-background-color: #A9A9A9;">
+      <Pane fx:id="headerPane" prefHeight="70.0" prefWidth="320.0" style="-fx-background-color: #A9A9A9;">
          <children>
-            <Button fx:id="btnClose" layoutX="414.0" layoutY="23.0" mnemonicParsing="false" onAction="#closeApp" text="Close" />
-            <Button layoutX="14.0" layoutY="23.0" mnemonicParsing="false" text="Go Back" />
+            <Button fx:id="btnClose" layoutX="266.0" layoutY="23.0" mnemonicParsing="false" onAction="#closeApp" prefHeight="26.0" prefWidth="40.0" text="X" />
+            <Button fx:id="btnClose1" layoutX="212.0" layoutY="23.0" mnemonicParsing="false" onAction="#closeApp" prefHeight="26.0" prefWidth="40.0" text="-" />
+            <Text layoutX="14.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FaceGram" wrappingWidth="177.39996337890625">
+               <font>
+                  <Font size="35.0" />
+               </font>
+            </Text>
          </children></Pane>
-      <Pane fx:id="headerPane1" layoutY="530.0" prefHeight="71.0" prefWidth="480.0" style="-fx-background-color: #A9A9A9;">
+    <AnchorPane layoutY="70.0" minHeight="0.0" minWidth="0.0" prefHeight="340.0" prefWidth="320.0" />
+      <Pane fx:id="headerPane1" layoutY="410.0" prefHeight="70.0" prefWidth="320.0" style="-fx-background-color: #A9A9A9;">
          <children>
-            <Button fx:id="btnCreate" layoutX="414.0" layoutY="23.0" mnemonicParsing="false" onAction="#createPost" text="Create" />
-            <Button layoutX="337.0" layoutY="23.0" mnemonicParsing="false" text="Search" />
+            <Button layoutX="86.0" layoutY="23.0" mnemonicParsing="false" text="Search" />
+            <Button fx:id="btnCreate" layoutX="244.0" layoutY="21.0" mnemonicParsing="false" onAction="#createPost" prefHeight="25.0" prefWidth="59.0" text="Create" />
+            <Button layoutX="177.0" layoutY="23.0" mnemonicParsing="false" text="New" />
+            <Button layoutX="14.0" layoutY="23.0" mnemonicParsing="false" text="Back" />
          </children></Pane>
-      <ScrollPane layoutY="71.0" prefHeight="459.0" prefWidth="480.0">
-        <content>
-          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="530.0" prefWidth="479.0" />
-        </content>
-      </ScrollPane>
    </children>
 </AnchorPane>
