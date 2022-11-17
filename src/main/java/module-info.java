@@ -12,7 +12,7 @@ module com.facegram.facegram {
     opens com.facegram.connection to java.xml.bind;
     exports com.facegram.connection;
     //opens com.facegram.model.DAO;
-    exports com.facegram;
-    exports com.facegram.controllers;
     opens com.facegram.controllers to javafx.fxml;
+    exports com.facegram;
+    //exports com.facegram.controllers;
 }
