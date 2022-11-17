@@ -141,7 +141,7 @@ public class PostDAO extends Post implements IDAO<Post,Integer>  {
                         Post p = new Post(rs.getInt("id"),
                                 rs.getString("text"),
                                 rs.getDate("date"),
-                                rs.getDate("editDate"));
+                                rs.getDate("edit_date"));
                         result.add(p);
                     }
                     rs.close();
