@@ -144,11 +144,10 @@ public class Post {
 
     @Override
     public String toString() {
-        return "Post{" +
+        String result = "Post{" +
                 "text='" + text + '\'' +
                 ", date=" + date +
-                ", owner=" + owner +
-                ", comments=" + comments +
-                '}';
+                ", owner=" + owner.getId() + '}';
+        return result+=getComments();
     }
 }
