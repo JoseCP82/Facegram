@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
 
-
-<AnchorPane prefHeight="480.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/17.0.2-ea" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.facegram.loginController" />
-
-<AnchorPane prefHeight="480.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/11.0.14-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.facegram.loginController" />
-
+<AnchorPane prefHeight="340.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.facegram.controllers.CommentController">
+   <children>
+      <Button fx:id="buttonAdd" layoutX="195.0" layoutY="278.0" mnemonicParsing="false" onAction="#addButton" prefHeight="39.0" prefWidth="110.0" text="Public Comment" />
+      <TextArea fx:id="textComment" layoutX="13.0" layoutY="14.0" prefHeight="251.0" prefWidth="294.0" promptText="Insert Here Your Comment" wrapText="true" />
+      <Button fx:id="buttonClose" layoutX="14.0" layoutY="278.0" mnemonicParsing="false" onAction="#cancelButton" prefHeight="39.0" prefWidth="110.0" text="Back" />
+   </children>
+</AnchorPane>

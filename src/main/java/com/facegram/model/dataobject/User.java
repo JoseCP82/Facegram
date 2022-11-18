@@ -31,8 +31,12 @@ public class User {
         this.followers = null;
     }
     public User(String name, String password) {
+        this.id = -1;
         this.name = name;
         this.password = password;
+        this.posts = null;
+        this.followereds = null;
+        this.followers = null;
     }
     public User(int id, String name, String password){
         this.id = id;
@@ -109,7 +113,8 @@ public class User {
     @Override
     public String toString() {
         return "User{" +
-                "name='" + name + '\'' +
+                "id=" + id +
+                ", name='" + name + '\'' +
                 '}';
     }
 
