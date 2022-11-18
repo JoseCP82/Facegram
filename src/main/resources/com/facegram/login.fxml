@@ -14,10 +14,10 @@
             <Font size="30.0" />
          </font>
       </Label>
-      <TextField layoutX="86.0" layoutY="177.0" promptText="User" />
-      <TextField layoutX="86.0" layoutY="223.0" promptText="Password" />
-      <Button layoutX="33.0" layoutY="341.0" mnemonicParsing="false" text="Register" />
-      <Button layoutX="242.0" layoutY="341.0" mnemonicParsing="false" text="LogIn" />
+      <TextField fx:id="tfName" layoutX="86.0" layoutY="177.0" promptText="Name" />
+      <TextField fx:id="tfPassword" layoutX="86.0" layoutY="223.0" promptText="Password" />
+      <Button fx:id="btnRegister" layoutX="33.0" layoutY="341.0" mnemonicParsing="false" text="Register" />
+      <Button fx:id="btnLogIn" layoutX="242.0" layoutY="341.0" mnemonicParsing="false" text="LogIn" />
       <ImageView fitHeight="87.0" fitWidth="109.0" layoutX="146.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" />
    </children>
 </AnchorPane>
