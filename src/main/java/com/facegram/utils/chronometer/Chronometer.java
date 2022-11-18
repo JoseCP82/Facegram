@@ -1,7 +1,6 @@
 package com.facegram.utils.chronometer;
 
 import com.facegram.logging.Logging;
-import com.facegram.utils.message.InfoMessage;
 import java.time.LocalTime;
 
 public class Chronometer extends Thread {
@@ -9,8 +8,7 @@ public class Chronometer extends Thread {
     /**
      * Atributos de clase
      */
-    private final int TIME_MAX = 5;
-    private LocalTime loginTime;
+    private final int TIME_MAX = 60; //Segundos 900 --> 15 minutos
     private String sessionTime;
     private boolean isExceed;
 
@@ -18,7 +16,6 @@ public class Chronometer extends Thread {
      * Constructor por defecto
      */
     public Chronometer() {
-        this.loginTime = LocalTime.now();
         this.sessionTime ="Horas: 0" + "\nMinutos: 0" + "\nSegundos: 0";
         this.isExceed = false;
     }
@@ -37,17 +34,17 @@ public class Chronometer extends Thread {
     public void run() {
         int seconds = 0;
         try {
-            while (!this.isInterrupted()) {
+            while(!this.isInterrupted()) {
                 Thread.sleep(1000);
                 calculateSessionTime(++seconds);
+                System.out.println("Calculando...");
                 if (!this.isExceed) {
-                    if(isOverTime()){
+                    if(isOverTime(seconds)){
                         //Cambiar sout por message cuando funcione
                         /*
                         new InfoMessage("Ha excedido el tiempo recomendado de uso en Facegram.\n" +
                             "Desde el equipo de Facegram le sugerimos que descanse periodicamente.").showMessage();
                         */
-
                         System.out.println("Ha excedido el tiempo recomendado de uso en Facegram.\n" +
                                 "Desde el equipo de Facegram le sugerimos que descanse periodicamente.");
                         this.isExceed = true;
@@ -63,8 +60,8 @@ public class Chronometer extends Thread {
      * Método por el cual sabremos si el usuario a excedido de tiempo recomendado su sesión
      * @return True o false si excedió el tiempo o no
      */
-    private boolean isOverTime() {
-        return loginTime.plusSeconds(TIME_MAX).isAfter(LocalTime.now()); // Modificar a minutos con plusMinutes
+    private boolean isOverTime(int seconds) {
+        return seconds>TIME_MAX;
     }
 
     /**
