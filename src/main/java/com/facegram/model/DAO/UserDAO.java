@@ -26,10 +26,10 @@ public class UserDAO extends User implements IDAO<User, Integer> {
      * Sentencias de UserDAO
      */
     private final static String INSERT ="INSERT INTO user (name,password) VALUES (?,?)";
-    private final static String SELECTBYID ="SELECT (id, name, pasword) FROM user WHERE id=?";
+    private final static String SELECTBYID ="SELECT id, name, password FROM user WHERE id=?";
 
-    private final static String SELECTBYNAME ="SELECT (id, name, pasword) FROM user WHERE name=?";
-    private final static String SELECTFOLLOWERSBYUSER="SELECT (id, name, password) FROM user WHERE name=?";
+    private final static String SELECTBYNAME ="SELECT id, name, password FROM user WHERE name=?";
+    private final static String SELECTFOLLOWERSBYUSER="SELECT id, name, password FROM user WHERE name=?";
     private final static String SELECTALL ="SELECT * FROM user";
     private final static String UPDATE ="UPDATE user SET, name=?, password=? WHERE id=?";
     private final static String DELETE ="DELETE FROM user WHERE id=?";
@@ -83,6 +83,7 @@ public class UserDAO extends User implements IDAO<User, Integer> {
                 if(ps.execute()){
                     ResultSet rs = ps.getResultSet();
                     if(rs.next()){
+                        this.id=rs.getInt("id");
                         this.name=rs.getString("name");
                         this.password=rs.getString("password");
                     }
@@ -115,6 +116,7 @@ public class UserDAO extends User implements IDAO<User, Integer> {
                     ResultSet rs = ps.getResultSet();
                     if (rs.next()) {
                         this.id = rs.getInt("id");
+                        this.name=rs.getString("name");
                         this.password = rs.getString("password");
                     }
                 }

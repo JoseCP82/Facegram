@@ -5,6 +5,7 @@ import com.facegram.model.DAO.PostDAO;
 import com.facegram.model.dataobject.Post;
 import com.facegram.utils.chronometer.Chronometer;
 import com.facegram.utils.message.ConfirmMessage;
+import com.facegram.utils.message.InfoMessage;
 import com.facegram.utils.message.Message;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -43,10 +44,10 @@ public class FeedController implements Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //chronometer = new Chronometer();
-        //chronometer.start();
+        chronometer = new Chronometer();
+        chronometer.start();
         anchorNewPost.setVisible(false);
-        //showPosts();
+        showPosts();
 
     }
 
@@ -108,8 +109,8 @@ public class FeedController implements Initializable {
         Message ms = new ConfirmMessage("¿Seguro que desea salir?");
         ms.showMessage();
         if(((ConfirmMessage) ms).getBt() == ButtonType.OK) {
-            //this.chronometer.interrupt();
-            //new InfoMessage("Duración de la sesión:\n"+this.chronometer.getSessionTime()).showMessage();
+            this.chronometer.interrupt();
+            new InfoMessage("Duración de la sesión:\n"+this.chronometer.getSessionTime()).showMessage();
             Logging.infoLogging("Aplicación finalizada.");
             this.stage = (Stage) this.btnClose.getScene().getWindow();
             this.stage.close();
