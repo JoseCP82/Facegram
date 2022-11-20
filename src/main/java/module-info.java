@@ -1,4 +1,4 @@
-module com.facegram.facegram {
+module com.facegram {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.xml.bind;
@@ -11,8 +11,7 @@ module com.facegram.facegram {
     opens com.facegram to javafx.fxml;
     opens com.facegram.connection to java.xml.bind;
     exports com.facegram.connection;
-    //opens com.facegram.model.DAO;
     opens com.facegram.controllers to javafx.fxml;
     exports com.facegram;
-    //exports com.facegram.controllers;
+
 }
