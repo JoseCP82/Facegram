@@ -38,13 +38,19 @@ public class RegisterController {
      * Encripta cualquier cadena usando SHA256
      */
     public static String encrypt(String s) {
-        MessageDigest md = null;
         try {
-            md = MessageDigest.getInstance("SHA-256");
-            byte[] b = md.digest(s.getBytes());
-            BigInteger bi = new BigInteger(1,b);
-            return bi.toString(16);
-        } catch (NoSuchAlgorithmException e) {
+            MessageDigest md = MessageDigest.getInstance("SHA-256");
+            byte[] b = md.digest(s.getBytes("UTF-8"));
+            StringBuffer sb = new StringBuffer();
+            for(int i=0; i<b.length; i++){
+                String t = Integer.toHexString(0xff & b[i]);
+                if(t.length() == 1){
+                    sb.append('0');
+                    sb.append(t);
+                }
+            }
+            return sb.toString();
+        } catch (Exception e) {
             Logging.warningLogging(e+"");
             return null;
         }
