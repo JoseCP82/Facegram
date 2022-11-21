@@ -19,7 +19,7 @@ public class CommentController {
 
     @FXML
     private void newComment(){
-        
+
     }
 
     @FXML
