@@ -13,9 +13,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.math.BigInteger;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 public class RegisterController {
 
@@ -67,6 +65,7 @@ public class RegisterController {
                 if(!uDAO.get(name).equals(name)){
                     Message m = new InfoMessage("Usuario creado");
                     m.showMessage();
+                    FeedController fc =new FeedController(u);
                 }else{
                     Message m = new ErrorMessage("Los parámetros establecidos no son válidos, puebe de nuevo");
                     m.showMessage();
