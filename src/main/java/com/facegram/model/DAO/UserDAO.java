@@ -2,7 +2,7 @@ package com.facegram.model.DAO;
 
 import com.facegram.connection.DBConnection;
 import com.facegram.interfaces.IDAO;
-import com.facegram.logging.Logging;
+import com.facegram.log.Log;
 import com.facegram.model.dataobject.Post;
 import com.facegram.model.dataobject.User;
 
@@ -26,10 +26,17 @@ public class UserDAO extends User implements IDAO<User, Integer> {
      * Sentencias de UserDAO
      */
     private final static String INSERT ="INSERT INTO user (name,password) VALUES (?,?)";
+
+    private final static String SELECTBYID ="SELECT id, name, password FROM user WHERE id=?"; //modificar pasword, quitar parentesis
+
+    private final static String SELECTBYNAME ="SELECT (id, name, password) FROM user WHERE name=?"; //modificar pasword, quitar parentesis
+    private final static String SELECTFOLLOWERSBYUSER="SELECT (id, name, password) FROM user WHERE name=?"; // quitar parentesis
+
     private final static String SELECTBYID ="SELECT id, name, password FROM user WHERE id=?";
 
     private final static String SELECTBYNAME ="SELECT id, name, password FROM user WHERE name=?";
     private final static String SELECTFOLLOWERSBYUSER="SELECT id, name, password FROM user WHERE name=?";
+
     private final static String SELECTALL ="SELECT * FROM user";
     private final static String UPDATE ="UPDATE user SET, name=?, password=? WHERE id=?";
     private final static String DELETE ="DELETE FROM user WHERE id=?";
@@ -58,7 +65,7 @@ public class UserDAO extends User implements IDAO<User, Integer> {
                     rs.close();
                     result=true;
                 } catch(SQLException e){
-                    Logging.warningLogging(e+"");
+                    Log.warningLogging(e+"");
                     result=false;
                 }
             }
@@ -91,7 +98,7 @@ public class UserDAO extends User implements IDAO<User, Integer> {
                 ps.close();
                 aux=new User(this.id,this.name,this.password);
             } catch (SQLException e) {
-                Logging.warningLogging(e+"");
+                Log.warningLogging(e+"");
                 aux=null;
             }
         }
@@ -123,7 +130,7 @@ public class UserDAO extends User implements IDAO<User, Integer> {
                 ps.close();
                 aux = new User(this.id, this.name, this.password);
             } catch (SQLException e) {
-                Logging.warningLogging(e + "");
+                Log.warningLogging(e + "");
                 aux = null;
             }
         }
@@ -151,7 +158,7 @@ public class UserDAO extends User implements IDAO<User, Integer> {
                 }
                 ps.close();
             }catch (SQLException e){
-                Logging.warningLogging(e+"");
+                Log.warningLogging(e+"");
                 result=null;
             }
         }
@@ -180,7 +187,7 @@ public class UserDAO extends User implements IDAO<User, Integer> {
                 }
                 ps.close();
             }catch (SQLException e){
-                Logging.warningLogging(e+"");
+                Log.warningLogging(e+"");
                 result=null;
             }
         }
@@ -288,7 +295,7 @@ public class UserDAO extends User implements IDAO<User, Integer> {
                     ps.close();
                     i=1;
                 } catch (SQLException e) {
-                    Logging.warningLogging(e+"");
+                    Log.warningLogging(e+"");
                     i=0;
                 }
             }
@@ -316,7 +323,7 @@ public class UserDAO extends User implements IDAO<User, Integer> {
                     ps.close();
                     i=1;
                 }catch(SQLException e) {
-                    Logging.warningLogging(e+"");
+                    Log.warningLogging(e+"");
                     i=0;
                 }
             }

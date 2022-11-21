@@ -2,10 +2,9 @@ package com.facegram.model.DAO;
 
 import com.facegram.connection.DBConnection;
 import com.facegram.interfaces.IDAO;
-import com.facegram.logging.Logging;
+import com.facegram.log.Log;
 import com.facegram.model.dataobject.Comment;
 import com.facegram.model.dataobject.Post;
-import com.facegram.model.dataobject.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -50,7 +49,7 @@ public class CommentDAO extends Comment implements IDAO<Comment, Integer> {
                     ps.close();
                     rs.close();
                 } catch (SQLException e) {
-                    Logging.warningLogging(e+"");
+                    Log.warningLogging(e+"");
                 }
             }
         }
@@ -83,7 +82,7 @@ public class CommentDAO extends Comment implements IDAO<Comment, Integer> {
                 }
                 ps.close();
             } catch (SQLException e){
-                Logging.warningLogging(e+"");
+                Log.warningLogging(e+"");
             }
         }
         return result;
@@ -109,7 +108,7 @@ public class CommentDAO extends Comment implements IDAO<Comment, Integer> {
                     }
                     ps.close();
                 } catch (SQLException e) {
-                    Logging.warningLogging(e+"");
+                    Log.warningLogging(e+"");
                 }
             }
         }

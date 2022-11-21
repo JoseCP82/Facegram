@@ -1,13 +1,12 @@
 package com.facegram.controllers;
 
 import com.facegram.App;
-import com.facegram.logging.Logging;
+import com.facegram.log.Log;
 import com.facegram.utils.message.ConfirmMessage;
 import com.facegram.utils.message.InfoMessage;
 import com.facegram.utils.message.Message;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
@@ -72,7 +71,13 @@ public class LoginController {
         Message ms = new ConfirmMessage("¿Seguro que desea salir?");
         ms.showMessage();
         if(((ConfirmMessage) ms).getBt() == ButtonType.OK) {
+
+            //this.chronometer.interrupt();
+            //new InfoMessage("Duración de la sesión:\n"+this.chronometer.getSessionTime()).showMessage();
+            Log.infoLogging("Aplicación finalizada.");
+
             Logging.infoLogging("Aplicación finalizada.");
+
             this.stage = (Stage) this.btnClose.getScene().getWindow();
             this.stage.close();
         }

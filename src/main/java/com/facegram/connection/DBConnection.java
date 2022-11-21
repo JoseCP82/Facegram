@@ -1,8 +1,6 @@
 package com.facegram.connection;
 
-import com.facegram.logging.Logging;
-import com.facegram.utils.message.ErrorMessage;
-import com.facegram.utils.message.InfoMessage;
+import com.facegram.log.Log;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
@@ -28,7 +26,7 @@ public class DBConnection {
             conn= DriverManager.getConnection(dc.getServer()+"/"+dc.getDatabase(), dc.getUsername(), dc.getPassword());
         } catch (SQLException e) {
             //new ErrorMessage("No se pudo crear la conexion").showMessage();
-            Logging.warningLogging(e+"");
+            Log.warningLogging(e+"");
             conn=null;
         }
     }
@@ -57,7 +55,7 @@ public class DBConnection {
             dc = (DataConnection) um.unmarshal(DBConnection.class.getResource("/connectiondata/connectionData.xml"));
         } catch (JAXBException e) {
             //new ErrorMessage("No se pudieron obtener los datos de conexión.").showMessage();
-            Logging.warningLogging(e+"");
+            Log.warningLogging(e+"");
         }
         return dc;
     }
@@ -70,7 +68,7 @@ public class DBConnection {
             try {
                 conn.close();
             }catch(SQLException ex) {
-                Logging.warningLogging(ex+"");
+                Log.warningLogging(ex+"");
             }
         }
     }

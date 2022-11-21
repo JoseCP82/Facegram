@@ -1,14 +1,14 @@
 package com.facegram.utils.chronometer;
 
-import com.facegram.logging.Logging;
-import java.time.LocalTime;
+import com.facegram.log.Log;
+import com.facegram.utils.message.InfoMessage;
 
 public class Chronometer extends Thread {
 
     /**
      * Atributos de clase
      */
-    private final int TIME_MAX = 60; //Segundos 900 --> 15 minutos
+    private final int TIME_MAX = 10; //Segundos 900 --> 15 minutos
     private String sessionTime;
     private boolean isExceed;
 
@@ -41,10 +41,10 @@ public class Chronometer extends Thread {
                 if (!this.isExceed) {
                     if(isOverTime(seconds)){
                         //Cambiar sout por message cuando funcione
-                        /*
+
                         new InfoMessage("Ha excedido el tiempo recomendado de uso en Facegram.\n" +
                             "Desde el equipo de Facegram le sugerimos que descanse periodicamente.").showMessage();
-                        */
+
                         System.out.println("Ha excedido el tiempo recomendado de uso en Facegram.\n" +
                                 "Desde el equipo de Facegram le sugerimos que descanse periodicamente.");
                         this.isExceed = true;
@@ -52,7 +52,7 @@ public class Chronometer extends Thread {
                 }
             }
         } catch (InterruptedException e) {
-            Logging.warningLogging(e+"");
+            Log.warningLogging(e+"");
         }
     }
 

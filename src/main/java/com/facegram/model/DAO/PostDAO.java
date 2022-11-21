@@ -2,10 +2,9 @@ package com.facegram.model.DAO;
 
 import com.facegram.connection.DBConnection;
 import com.facegram.interfaces.IDAO;
-import com.facegram.logging.Logging;
+import com.facegram.log.Log;
 import com.facegram.model.dataobject.Post;
 import com.facegram.model.dataobject.User;
-
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.Date;
@@ -17,12 +16,9 @@ public class PostDAO extends Post implements IDAO<Post,Integer>  {
      * Consultas MySQL
      */
     private final static String INSERT = "INSERT INTO post (id_user, date, edit_Date, text) VALUES (?,?,?,?)";
-
     private final static String SELECTALLBYUSER = "SELECT id, date, edit_date, text FROM Post WHERE id_user=?";
-
-    private final static String SELECTALL = "SELECT id, date, edit_date, text FROM post";
+    private final static String SELECTALL = "SELECT id, date, edit_date, text, id_user FROM post";
     private final static String SELECTBYID = "SELECT id, id_user, date, edit_date, text FROM post WHERE id=?";
-
     private final static String UPDATE = "UPDATE post SET edit_date=?, text=? WHERE id=?";
     private final static String DELETE = "DELETE FROM post WHERE id=?";
 
@@ -84,7 +80,7 @@ public class PostDAO extends Post implements IDAO<Post,Integer>  {
                     rs.close();
                     result = true;
                 } catch (SQLException e) {
-                    Logging.warningLogging(e + "");
+                    Log.warningLogging(e + "");
                     result = false;
                 }
             }
@@ -118,7 +114,7 @@ public class PostDAO extends Post implements IDAO<Post,Integer>  {
                 }
                 ps.close();
             } catch (SQLException e) {
-                Logging.warningLogging(e+"");
+                Log.warningLogging(e+"");
             }
         }
         return this;
@@ -130,6 +126,7 @@ public class PostDAO extends Post implements IDAO<Post,Integer>  {
      */
     public List<Post> getAll() {
         List<Post> result = new ArrayList<Post>();
+        User user = null;
         Connection conn = DBConnection.getConnect();
         if(conn != null) {
             PreparedStatement ps;
@@ -142,13 +139,14 @@ public class PostDAO extends Post implements IDAO<Post,Integer>  {
                                 rs.getString("text"),
                                 rs.getDate("date"),
                                 rs.getDate("edit_date"));
+                        p.setOwner(new User(rs.getInt("id_user")));
                         result.add(p);
                     }
                     rs.close();
                 }
                 ps.close();
             } catch (SQLException e) {
-                Logging.warningLogging(e+"");
+                Log.warningLogging(e+"");
             }
         }
         return result;
@@ -174,14 +172,13 @@ public class PostDAO extends Post implements IDAO<Post,Integer>  {
                                 rs.getString("text"),
                                 rs.getDate("date"),
                                 rs.getDate("edit_date"));
-                        post.setOwner(new User(rs.getInt("id_user")));
                         result.add(post);
                     }
                     rs.close();
                 }
                 ps.close();
             } catch (SQLException e) {
-                Logging.warningLogging(e+"");
+                Log.warningLogging(e+"");
             }
         }
         return result;
@@ -205,7 +202,7 @@ public class PostDAO extends Post implements IDAO<Post,Integer>  {
                     ps.close();
                     result = 1;
                 } catch (SQLException e) {
-                    Logging.warningLogging(e + "");
+                    Log.warningLogging(e + "");
                     result = 0;
                 }
             }
@@ -232,7 +229,7 @@ public class PostDAO extends Post implements IDAO<Post,Integer>  {
                     ps.close();
                     result = 1;
                 } catch (SQLException e) {
-                    Logging.warningLogging(e+"");
+                    Log.warningLogging(e+"");
                     result = 0;
                 }
             }
