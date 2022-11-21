@@ -27,17 +27,11 @@ public class UserDAO extends User implements IDAO<User, Integer> {
      */
     private final static String INSERT ="INSERT INTO user (name,password) VALUES (?,?)";
 
-    private final static String SELECTBYID ="SELECT id, name, password FROM user WHERE id=?"; //modificar pasword, quitar parentesis
-
-    private final static String SELECTBYNAME ="SELECT (id, name, password) FROM user WHERE name=?"; //modificar pasword, quitar parentesis
-    private final static String SELECTFOLLOWERSBYUSER="SELECT (id, name, password) FROM user WHERE name=?"; // quitar parentesis
-
     private final static String SELECTBYID ="SELECT id, name, password FROM user WHERE id=?";
-
     private final static String SELECTBYNAME ="SELECT id, name, password FROM user WHERE name=?";
     private final static String SELECTFOLLOWERSBYUSER="SELECT id, name, password FROM user WHERE name=?";
-
     private final static String SELECTALL ="SELECT * FROM user";
+
     private final static String UPDATE ="UPDATE user SET, name=?, password=? WHERE id=?";
     private final static String DELETE ="DELETE FROM user WHERE id=?";
 
