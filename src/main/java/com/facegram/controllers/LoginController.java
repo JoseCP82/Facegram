@@ -71,13 +71,9 @@ public class LoginController {
         Message ms = new ConfirmMessage("¿Seguro que desea salir?");
         ms.showMessage();
         if(((ConfirmMessage) ms).getBt() == ButtonType.OK) {
-
             //this.chronometer.interrupt();
             //new InfoMessage("Duración de la sesión:\n"+this.chronometer.getSessionTime()).showMessage();
             Log.infoLogging("Aplicación finalizada.");
-
-            Logging.infoLogging("Aplicación finalizada.");
-
             this.stage = (Stage) this.btnClose.getScene().getWindow();
             this.stage.close();
         }
