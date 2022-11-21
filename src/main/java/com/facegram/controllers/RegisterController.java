@@ -1,6 +1,6 @@
 package com.facegram.controllers;
 
-import com.facegram.logging.Logging;
+import com.facegram.log.Log;
 import com.facegram.model.DAO.UserDAO;
 import com.facegram.model.dataobject.User;
 import com.facegram.utils.message.ConfirmMessage;
@@ -13,9 +13,7 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
-import java.math.BigInteger;
 import java.security.MessageDigest;
-import java.security.NoSuchAlgorithmException;
 
 public class RegisterController {
 
@@ -51,7 +49,7 @@ public class RegisterController {
             }
             return sb.toString();
         } catch (Exception e) {
-            Logging.warningLogging(e+"");
+            Log.warningLogging(e+"");
             return null;
         }
 
@@ -67,6 +65,7 @@ public class RegisterController {
                 if(!uDAO.get(name).equals(name)){
                     Message m = new InfoMessage("Usuario creado");
                     m.showMessage();
+                    FeedController fc =new FeedController(u);
                 }else{
                     Message m = new ErrorMessage("Los parámetros establecidos no son válidos, puebe de nuevo");
                     m.showMessage();
@@ -91,7 +90,7 @@ public class RegisterController {
         Message ms = new ConfirmMessage("¿Seguro que desea salir?");
         ms.showMessage();
         if(((ConfirmMessage) ms).getBt() == ButtonType.OK) {
-            Logging.infoLogging("Aplicación finalizada.");
+            Log.infoLogging("Aplicación finalizada.");
             this.stage = (Stage) this.btnClose.getScene().getWindow();
             this.stage.close();
         }

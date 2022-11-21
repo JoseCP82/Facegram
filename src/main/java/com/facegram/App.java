@@ -15,13 +15,8 @@ public class App extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-        User user = new UserDAO().get(1);
-        FeedController fc =new FeedController(user); //modificar
 
-
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("feed.fxml"));
-
-        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("register.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("login.fxml"));
 
         Scene scene = new Scene(fxmlLoader.load(), 320, 480);
         stage.setScene(scene);
