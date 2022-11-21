@@ -28,7 +28,7 @@ public class FeedController implements  Initializable {
      */
     @FXML private Button btnClose;
     @FXML private BorderPane bdrPane;
-    @FXML private AnchorPane anchorBody;
+    @FXML private ScrollPane paneCenter;
 
     /**
      * Atributos de clase
@@ -43,7 +43,6 @@ public class FeedController implements  Initializable {
      */
     public FeedController(User user) {
         this.user = user;
-        System.out.println(this.user);
     }
 
     /**
@@ -74,7 +73,6 @@ public class FeedController implements  Initializable {
         int row = 1;
         GridPane gp = new GridPane();
         gp.setPrefSize(170,320);
-        gp.setGridLinesVisible(true);
         for(Post p : posts) {
             try {
                 FXMLLoader fxmlLoader = new FXMLLoader();
@@ -93,7 +91,7 @@ public class FeedController implements  Initializable {
                 Log.warningLogging(e+"");
             }
         }
-        anchorBody.getChildren().add(gp);
+        paneCenter.setContent(gp);
     }
 
     /**
@@ -101,7 +99,6 @@ public class FeedController implements  Initializable {
      */
     @FXML
     private void createNewPost() {
-        System.out.println(this.user);
         try {
             FXMLLoader fxmlLoader = new FXMLLoader();
             fxmlLoader.setLocation(App.class.getResource("newPost.fxml"));
@@ -129,12 +126,6 @@ public class FeedController implements  Initializable {
         Message ms = new ConfirmMessage("¿Seguro que desea salir?");
         ms.showMessage();
         if(((ConfirmMessage) ms).getBt() == ButtonType.OK) {
-
-            this.chronometer.interrupt();
-            new InfoMessage("Duración de la sesión:\n"+this.chronometer.getSessionTime()).showMessage();
-            Log.infoLogging("Aplicación finalizada.");
-
-
             //this.chronometer.interrupt();
             //new InfoMessage("Duración de la sesión:\n"+this.chronometer.getSessionTime()).showMessage();
             Log.infoLogging("Aplicación finalizada.");

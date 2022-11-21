@@ -1,6 +1,7 @@
 package com.facegram.controllers;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
 
@@ -12,6 +13,7 @@ public class PostController {
     @FXML private Label lblUser;
     @FXML private Label lblDate;
     @FXML private TextArea txtContent;
+    @FXML private Button btnLike;
 
     /**
      * Setea los elementos del archivo fxml
@@ -24,4 +26,10 @@ public class PostController {
         this.txtContent.setText(content);
         this.lblDate.setText(date);
     }
+
+    @FXML
+    public void likeStatus() {
+
+    }
+
 }
