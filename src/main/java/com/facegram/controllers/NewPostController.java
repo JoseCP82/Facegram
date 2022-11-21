@@ -13,10 +13,11 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.ResourceBundle;
 
-public class NewPostController {
+public class NewPostController implements Initializable {
 
-    private User user;
+    @FXML private Button btnCancelNew;
 
+    /*
     public NewPostController(User user){
         this.user=user;
         System.out.println("User en newPOst"+this.user);
@@ -24,6 +25,8 @@ public class NewPostController {
 
     public NewPostController(){}
 
+
+     */
     @FXML private TextArea txtNewContent;
 
     @FXML
@@ -33,7 +36,17 @@ public class NewPostController {
             Calendar calendar = Calendar.getInstance();
             Date dateNow = calendar.getTime();
             //String formattedDate = sdf.format(dateNow);
-            new PostDAO(new Post(this.txtNewContent.getText(), dateNow, dateNow, user)).insert();
+            //new PostDAO(new Post(this.txtNewContent.getText(), dateNow, dateNow, user)).insert();
         }
+    }
+
+    @FXML
+    private void closePublishWindow() {
+
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+
     }
 }
