@@ -13,24 +13,47 @@ import java.util.List;
 
 public class CommentDAO extends Comment implements IDAO<Comment, Integer> {
 
+    /**
+     * Consultas MySQL
+     */
     private final static String INSERT="INSERT INTO comment (text) VALUES (?))";
-    private final static String SELECTBYID="SELECT * FROM comment WHERE id=?";
     private final static String SELECTBYPOST="SELECT comment FROM Post WHERE id_post=?";
     private final static String DELETE="DELETE FROM comment WHERE id=?";
 
+    /**
+     * Constructor parametrizado
+     * @param id Id del Comentario
+     * @param text Texto del Comentario
+     * @param date Fecha de creación del comentario
+     */
     public CommentDAO(int id, String text, Date date) {
         super(id, text, date);
     }
 
+    /**
+     *Consturctor con parámetro Comment
+     * @param comment Comment a instanciar
+     */
     public CommentDAO(Comment comment) {
         this(comment.getId(),comment.getText(),comment.getDate());
         this.post = comment.getPost();
     }
 
+    /**
+     * Constructor con parámetro id
+     * @param id Id
+     */
     public CommentDAO(int id){ this.get(id); }
 
+    /**
+     * Constructor por defecto
+     */
     public CommentDAO() { super(); }
 
+    /**
+     * Inserta un nuevo comentario en la base de datos
+     * @return True o false si la operación se realizón con éxito
+     */
     @Override
     public boolean insert() {
         boolean result = false;
@@ -56,11 +79,22 @@ public class CommentDAO extends Comment implements IDAO<Comment, Integer> {
         return result;
     }
 
+    /**
+     * Método de obtención de un comentario, en este caso
+     * es innecesario para el programa
+     * @param id Id del objeto a buscar
+     * @return
+     */
     @Override
-    public Comment get(Integer id) { //?????
+    public Comment get(Integer id) {
         return null;
     }
 
+    /**
+     * Obtiene todos los comentarios asociados a un post
+     * @param post Post al cuál estan asociados los comentarios
+     * @return Lista de comentarios
+     */
     public List<Comment> getCommentsofPost(Post post) {
         List<Comment> result = new ArrayList<Comment>();
         Connection conn = DBConnection.getConnect();
@@ -88,14 +122,24 @@ public class CommentDAO extends Comment implements IDAO<Comment, Integer> {
         return result;
     }
 
+    /**
+     * Método para actualizar los comentarios,
+     * en este caso es innecesario
+     * @return
+     */
     @Override
     public int update() {
         //Los comentarios no pueden ser actualizados
         return 0;
     }
 
+    /**
+     * Elimina un comentario
+     * @return 1 o 0 si se eliminó con éxito o no
+     */
     @Override
     public int delete() {
+        int result = 0;
         if (id!=-1){
             Connection conn = DBConnection.getConnect();
             if (conn != null) {
@@ -107,11 +151,12 @@ public class CommentDAO extends Comment implements IDAO<Comment, Integer> {
                         this.id = -1;
                     }
                     ps.close();
+                    result = 1;
                 } catch (SQLException e) {
                     Log.warningLogging(e+"");
                 }
             }
         }
-        return 0;
+        return result;
     }
 }
