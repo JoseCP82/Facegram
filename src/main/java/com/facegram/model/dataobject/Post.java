@@ -16,6 +16,22 @@ public class Post {
     protected User owner;
     protected List<Comment> comments;
 
+    public Post(int id, String text, Date date, Date editDate, User user) {
+        this.id = id;
+        this.text = text;
+        this.date = date;
+        this.editDate = editDate;
+        this.owner = user;
+    }
+
+    public Post(String text, Date date, Date editDate, User user) {
+        this.id = -1;
+        this.text = text;
+        this.date = date;
+        this.editDate = editDate;
+        this.owner = user;
+    }
+
     /**
      * Constructor parametrizado
      * @param id Identificación asignada al post
@@ -144,10 +160,11 @@ public class Post {
 
     @Override
     public String toString() {
-        String result = "Post{" +
-                "text='" + text + '\'' +
-                ", date=" + date +
-                ", owner=" + owner.getId() + '}';
-        return result+=getComments();
+        String result = "Publicado por: " + owner.getName()+ "\n" +
+                text + "\n" +
+                "Publicado el " + date + "\n";
+        if(comments==null) result+="No existen comentarios.\n";
+        else result+=comments;
+        return result;
     }
 }

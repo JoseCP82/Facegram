@@ -1,21 +1,13 @@
 package com.facegram.controllers;
 
-import com.facegram.App;
-import com.facegram.logging.Logging;
 import com.facegram.model.DAO.CommentDAO;
-import com.facegram.model.dataobject.Comment;
 import com.facegram.utils.message.ConfirmMessage;
 import com.facegram.utils.message.Message;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
 import javafx.stage.Stage;
-
-import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.io.IOException;
 
 public class CommentController {
     CommentDAO cDao = new CommentDAO();

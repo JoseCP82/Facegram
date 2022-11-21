@@ -1,18 +1,17 @@
-package com.facegram.logging;
+package com.facegram.log;
 
-import com.facegram.utils.message.ErrorMessage;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.logging.Level;
 import java.util.logging.LogManager;
 import java.util.logging.Logger;
 
-public class Logging {
+public class Log {
 
     /**
      * Atributos de clase
      */
-    static Logger logger = Logger.getLogger(Logging.class.getName());
+    static Logger logger = Logger.getLogger(Log.class.getName());
 
     /**
      * Genera el log con nivel Info y muestra la información
@@ -36,7 +35,7 @@ public class Logging {
 
     private static void saveLog() {
         try {
-            InputStream configFile=Logging.class.getResourceAsStream("logging.properties");
+            InputStream configFile= Log.class.getResourceAsStream("logging.properties");
             LogManager.getLogManager().readConfiguration(configFile);
         }catch(SecurityException | IOException | NullPointerException e) {
             //new ErrorMessage("Logging system not initialized").showMessage();

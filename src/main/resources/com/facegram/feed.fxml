@@ -1,43 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
+<?import javafx.scene.layout.BorderPane?>
 
-<AnchorPane fx:id="anchorMain" prefHeight="480.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.facegram.controllers.FeedController">
-   <children>
-      <AnchorPane prefHeight="70.0" prefWidth="320.0" style="-fx-background-color: #A9A9A9">
+<BorderPane fx:id="bdrPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="480.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.facegram.controllers.FeedController">
+   <top>
+      <AnchorPane prefHeight="70.0" prefWidth="320.0" style="-fx-background-color: #A9A9A9;" BorderPane.alignment="CENTER">
          <children>
-            <Label layoutX="14.0" layoutY="17.0" text="FaceGram" textFill="WHITE">
-               <font>
-                  <Font size="25.0" />
-               </font>
-            </Label>
-            <Button fx:id="btnMin" layoutX="252.0" layoutY="20.0" mnemonicParsing="false" onAction="#minimizeWindow" prefHeight="16.0" prefWidth="11.0" text="_">
-               <font>
-                  <Font name="Calibri Light Italic" size="12.0" />
-               </font></Button>
-            <Button fx:id="btnClose" layoutX="283.0" layoutY="20.0" mnemonicParsing="false" onAction="#closeApp" prefHeight="26.0" prefWidth="22.0" style="-fx-background-radius: 100px;" text="X" />
+            <Button fx:id="btnClose" layoutX="282.0" layoutY="21.0" mnemonicParsing="false" onAction="#closeApp" prefHeight="24.0" prefWidth="24.0" text="X" />
+            <Button fx:id="btnMinimize" layoutX="251.0" layoutY="21.0" mnemonicParsing="false" onAction="#minimizeWindow" prefHeight="24.0" prefWidth="24.0" text="_" />
+         </children></AnchorPane>
+   </top>
+   <bottom>
+      <AnchorPane prefHeight="70.0" prefWidth="320.0" style="-fx-background-color: #A9A9A9;" BorderPane.alignment="CENTER">
+         <children>
+            <Button fx:id="btnCreate" layoutX="196.0" layoutY="22.0" mnemonicParsing="false" onAction="#createNewPost" text="Create" />
          </children>
       </AnchorPane>
-      <AnchorPane layoutY="411.0" prefHeight="70.0" prefWidth="320.0" style="-fx-background-color: #A9A9A9;">
-         <children>
-            <Button fx:id="btnCreate" layoutX="170.0" layoutY="18.0" mnemonicParsing="false" onAction="#createPost" text="Create" />
-            <Button layoutX="106.0" layoutY="18.0" mnemonicParsing="false" text="Search" />
-            <Button layoutX="24.0" layoutY="18.0" mnemonicParsing="false" text="Go Back" />
-            <Button layoutX="256.0" layoutY="18.0" mnemonicParsing="false" text="User" />
-         </children>
-      </AnchorPane>
-      <VBox fx:id="vBoxPosts" layoutY="70.0" prefHeight="340.0" prefWidth="320.0" />
-      <AnchorPane fx:id="anchorNewPost" prefHeight="340.0" prefWidth="320.0">
-         <children>
-            <Button fx:id="btnPublishNew" layoutX="201.0" layoutY="282.0" mnemonicParsing="false" text="Publish" />
-            <Button fx:id="btnCancelNew" layoutX="77.0" layoutY="282.0" mnemonicParsing="false" text="Cancel" />
-            <TextArea layoutX="21.0" layoutY="45.0" prefHeight="200.0" prefWidth="277.0" />
-         </children>
-      </AnchorPane>
-   </children>
-</AnchorPane>
+   </bottom>
+   <center>
+      <AnchorPane fx:id="anchorBody" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="170.0" prefWidth="320.0" BorderPane.alignment="CENTER" />
+   </center>
+</BorderPane>

@@ -1,11 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.Pane?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Button layoutX="64.0" layoutY="287.0" mnemonicParsing="false" text="Cancel" />
-      <Button layoutX="208.0" layoutY="287.0" mnemonicParsing="false" text="Publish" />
+      <Button fx:id="btnCancelNew" layoutX="70.0" layoutY="281.0" mnemonicParsing="false" text="Cancel" />
+      <Button fx:id="btnNewPost" layoutX="189.0" layoutY="281.0" mnemonicParsing="false" text="Publish" />
+      <TextArea fx:id="txtNewContent" layoutX="33.0" layoutY="70.0" prefHeight="200.0" prefWidth="254.0" />
    </children>
-</AnchorPane>
+</Pane>
