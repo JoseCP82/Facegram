@@ -15,11 +15,10 @@ import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 import java.io.IOException;
 import java.security.MessageDigest;
 
-public class RegisterController {
+public class RegisterController extends Controller {
 
     /**
      * Atributos de la clase Register
@@ -29,9 +28,7 @@ public class RegisterController {
     /**
      * Elementos FXML de la clase Register
      */
-    @FXML private Button btnLogIn;
     @FXML private Button btnClose;
-    @FXML private Button btnMinimize;
     @FXML private TextField tfName;
     @FXML private TextField tfPassword;
 
@@ -74,23 +71,20 @@ public class RegisterController {
                 if(((ConfirmMessage)m).getBt()==ButtonType.OK){
                     uDAO.insert();
                     new InfoMessage("Usuario añadido").showMessage();
-                    FeedController fc =new FeedController(uDAO.get(name));
                     changeFeed();
                 }
             }else{
                 if(uDAO.get(name).getName().equals(name) && uDAO.get(name).getPassword().equals(password)){
                     Message m = new InfoMessage("Sesión iniciada");
                     m.showMessage();
-                    FeedController fc =new FeedController(uDAO.get(name));
                     changeFeed();
                 }else{
                     new ErrorMessage("El nombre o contraseña son incorrectos").showMessage();
-
                 }
             }
+            permanentUser=u;
         }else{
             new ErrorMessage("Los campos no pueden estar vacíos, introduzca información").showMessage();
-
         }
     }
 
