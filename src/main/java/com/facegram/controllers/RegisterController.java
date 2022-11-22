@@ -1,5 +1,6 @@
 package com.facegram.controllers;
 
+import com.facegram.App;
 import com.facegram.log.Log;
 import com.facegram.model.DAO.UserDAO;
 import com.facegram.model.dataobject.User;
@@ -8,11 +9,15 @@ import com.facegram.utils.message.ErrorMessage;
 import com.facegram.utils.message.InfoMessage;
 import com.facegram.utils.message.Message;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
+import java.io.IOException;
 import java.security.MessageDigest;
 
 public class RegisterController {
@@ -25,7 +30,6 @@ public class RegisterController {
     /**
      * Elementos FXML de la clase Register
      */
-    @FXML private Button btnRegister;
     @FXML private Button btnLogIn;
     @FXML private Button btnClose;
     @FXML private Button btnMinimize;
@@ -52,27 +56,45 @@ public class RegisterController {
             Log.warningLogging(e+"");
             return null;
         }
-
     }
-    @FXML public void register(){
+    @FXML public void register() throws IOException {
         if(!tfName.getText().equals("") && !tfPassword.getText().equals("")){
-                String name = tfName.getText();
-                String password = tfPassword.getText();
-                encrypt(password);
-                User u = new User(name,password);
-                UserDAO uDAO = new UserDAO(u);
-                uDAO.insert();
-                if(!uDAO.get(name).equals(name)){
-                    Message m = new InfoMessage("Usuario creado");
+            String name = tfName.getText();
+            String password = tfPassword.getText();
+            encrypt(password);
+            User u = new User(name,password);
+            UserDAO uDAO = new UserDAO(u);
+            if(uDAO.get(name).getId()==-1){
+                Message m = new ConfirmMessage("El usuario no existe.\n ¿Desea crearlo?");
+                m.showMessage();
+                if(((ConfirmMessage)m).getBt()==ButtonType.OK){
+                    uDAO.insert();
+                    m = new InfoMessage("Usuario añadido");
                     m.showMessage();
-                    FeedController fc =new FeedController(u);
-                }else{
-                    Message m = new ErrorMessage("Los parámetros establecidos no son válidos, puebe de nuevo");
-                    m.showMessage();
+                    FeedController fc =new FeedController(uDAO.get(name));
+                    changeFeed();
                 }
+            }else{
+                Message m = new InfoMessage("Sesión iniciada");
+                m.showMessage();
+                FeedController fc =new FeedController(uDAO.get(name));
+                changeFeed();
+            }
         }else{
-            Message m = new ErrorMessage("Error");
+            Message m = new ErrorMessage("Los campos no pueden estar vacíos, introduzcalos");
         }
+    }
+
+    @FXML public void changeFeed() throws IOException {
+        this.stage = (Stage) this.btnClose.getScene().getWindow();
+        this.stage.close();
+        FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("feed.fxml"));
+        Scene scene = new Scene(fxmlLoader.load(), 320, 480);
+        Stage s = new Stage();
+        s.setScene(scene);
+        s.setResizable(false);
+        s.initStyle(StageStyle.UNDECORATED);
+        s.show();
     }
 
     /**
@@ -90,6 +112,8 @@ public class RegisterController {
         Message ms = new ConfirmMessage("¿Seguro que desea salir?");
         ms.showMessage();
         if(((ConfirmMessage) ms).getBt() == ButtonType.OK) {
+            //this.chronometer.interrupt();
+            //new InfoMessage("Duración de la sesión:\n"+this.chronometer.getSessionTime()).showMessage();
             Log.infoLogging("Aplicación finalizada.");
             this.stage = (Stage) this.btnClose.getScene().getWindow();
             this.stage.close();
