@@ -97,7 +97,6 @@ public class UserDAO extends User implements IDAO<User, Integer> {
                 aux=null;
             }
         }
-
         return aux;
     }
 

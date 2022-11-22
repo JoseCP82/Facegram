@@ -82,7 +82,7 @@ public class RegisterController extends Controller {
                     new ErrorMessage("El nombre o contraseña son incorrectos").showMessage();
                 }
             }
-            permanentUser=u;
+            permanentUser=uDAO.get(name);
         }else{
             new ErrorMessage("Los campos no pueden estar vacíos, introduzca información").showMessage();
         }

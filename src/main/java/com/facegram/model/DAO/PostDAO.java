@@ -61,6 +61,7 @@ public class PostDAO extends Post implements IDAO<Post,Integer>  {
      */
     @Override
     public boolean insert() {
+        System.out.println(this.getOwner().getId()+" "+this.getDate()+" " + this.getText());
         boolean result = false;
         if(id==-1) {
             Connection conn = DBConnection.getConnect();
