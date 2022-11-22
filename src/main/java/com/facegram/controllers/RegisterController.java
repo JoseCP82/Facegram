@@ -1,6 +1,5 @@
 package com.facegram.controllers;
 
-import com.facegram.App;
 import com.facegram.log.Log;
 import com.facegram.model.DAO.UserDAO;
 import com.facegram.model.dataobject.User;
