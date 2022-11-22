@@ -19,6 +19,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.net.URL;
+import java.util.Collections;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -59,6 +60,7 @@ public class FeedController extends Controller implements Initializable {
      */
     private void showPosts()  {
         List<Post> posts = new PostDAO().getAll();
+        //Collections.sort(posts);
         Pane pane = null;
         User u = null;
         int columns = 0;
@@ -91,9 +93,7 @@ public class FeedController extends Controller implements Initializable {
      */
     @FXML
     private void createNewPost() {
-        System.out.println(permanentUser);
         try {
-           // NewPostController npc = new NewPostController(this.user);
             bdrPane.getChildren().remove(bdrPane.getCenter());
             Pane pane = FXMLLoader.load(App.class.getResource("newPost.fxml"));
             bdrPane.setCenter(pane);

@@ -16,6 +16,14 @@ public class Post {
     protected User owner;
     protected List<Comment> comments;
 
+    /**
+     * Constructor parametrizado
+     * @param id Identificación asignada al post
+     * @param text Texto que tiene el post
+     * @param date Fecha de creación del post
+     * @param editDate Fecha de actualización del post
+     * @param user Usuario que postea
+     */
     public Post(int id, String text, Date date, Date editDate, User user) {
         this.id = id;
         this.text = text;
@@ -24,6 +32,13 @@ public class Post {
         this.owner = user;
     }
 
+    /**
+     * Constructor parametrizado
+     * @param text Texto que tiene el post
+     * @param date Fecha de creación del post
+     * @param editDate Fecha de actualización del post
+     * @param user Usuario que postea
+     */
     public Post(String text, Date date, Date editDate, User user) {
         this.id = -1;
         this.text = text;
