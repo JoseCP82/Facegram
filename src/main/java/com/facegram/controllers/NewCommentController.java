@@ -14,14 +14,13 @@ import javafx.stage.Stage;
 public class NewCommentController {
     CommentDAO cDao = new CommentDAO();
 
-    @FXML private Button addComment;
-    @FXML private TextArea textComment; //New Comment
+    @FXML private TextArea textComment;
     @FXML private Button buttonClose;
     @FXML private Button buttonAdd;
 
 
     @FXML
-    private void addButton() {
+    private void addComment() {
         String text = textComment.getText();
         cDao.setText(text);
 

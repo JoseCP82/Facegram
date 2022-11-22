@@ -10,6 +10,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextArea;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
@@ -31,12 +32,13 @@ public class CommentController implements Initializable {
     @FXML private Label lblUser;
     @FXML private TextArea txtComment;
     @FXML private Label lblDate;
+    @FXML private BorderPane bdrPane;
 
     /**
      * Constructor con parámetro Post
      * @param post Post
      */
-    private CommController(Post post){
+    private CommentController(Post post){
         this.post = post;
     }
 
