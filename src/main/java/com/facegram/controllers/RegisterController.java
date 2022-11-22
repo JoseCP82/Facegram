@@ -65,9 +65,9 @@ public class RegisterController {
         String name = tfName.getText();
         String password = tfPassword.getText();
         if(!name.equals("") && !password.equals("")){
-            encrypt(password);
             User u = new User(name,password);
             UserDAO uDAO = new UserDAO(u);
+            uDAO.setPassword(encrypt(password));
             if(uDAO.get(name).getId()==-1){
                 Message m = new ConfirmMessage("El usuario no existe.\n ¿Desea crearlo?");
                 m.showMessage();
