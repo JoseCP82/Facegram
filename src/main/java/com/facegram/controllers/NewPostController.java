@@ -5,7 +5,6 @@ import com.facegram.model.dataobject.Post;
 import com.facegram.model.dataobject.User;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextArea;
-
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -14,8 +13,6 @@ public class NewPostController {
 
     @FXML
     private TextArea txtContent;
-
-
 
     private User user;
 
@@ -27,15 +24,13 @@ public class NewPostController {
     @FXML
     private void publishPost(){
 
-        if(this.txtContent.equals("")) {
+        if(!this.txtContent.equals("")) {
             SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
             Calendar calendar = Calendar.getInstance();
             Date dateNow = calendar.getTime();
             //String formattedDate = sdf.format(dateNow);
             new PostDAO(new Post(this.txtContent.getText(), dateNow, dateNow, user)).insert();
         }
-
-
     }
 
     @FXML

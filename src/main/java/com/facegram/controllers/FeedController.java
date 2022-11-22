@@ -17,13 +17,12 @@ import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
-
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class FeedController implements  Initializable {
+public class FeedController extends Controller implements Initializable {
 
     /**
      * Atributos de clase bindeados con Scene Builder
@@ -35,17 +34,8 @@ public class FeedController implements  Initializable {
     /**
      * Atributos de clase
      */
-    private User user;
     private Chronometer chronometer;
     private Stage stage;
-
-    /**
-     * Constructor con parametro User
-     * @param user User
-     */
-    public FeedController(User user) {
-        this.user = user;
-    }
 
     /**
      * Constructor por defecto
@@ -101,8 +91,9 @@ public class FeedController implements  Initializable {
      */
     @FXML
     private void createNewPost() {
+        System.out.println(permanentUser);
         try {
-            NewPostController npc = new NewPostController(new User());
+           // NewPostController npc = new NewPostController(this.user);
             bdrPane.getChildren().remove(bdrPane.getCenter());
             Pane pane = FXMLLoader.load(App.class.getResource("newPost.fxml"));
             bdrPane.setCenter(pane);
@@ -123,7 +114,7 @@ public class FeedController implements  Initializable {
             this.chronometer.interrupt();
             new InfoMessage("Duración de la sesión:\n"+this.chronometer.getSessionTime()).showMessage();
             Log.infoLogging("Sesión finalizada.");
-            this.user=null;
+            permanentUser=null;
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("register.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 320, 480);
             Stage s = new Stage();
