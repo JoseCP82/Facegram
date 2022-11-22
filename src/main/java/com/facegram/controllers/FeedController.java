@@ -19,9 +19,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.net.URL;
-import java.util.Collections;
-import java.util.List;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class FeedController extends Controller implements Initializable {
 
@@ -53,14 +51,15 @@ public class FeedController extends Controller implements Initializable {
         chronometer = new Chronometer();
         chronometer.start();
         showPosts();
+        //borderPane=this.bdrPane;
     }
 
     /**
      * Lee de la bbdd todos los post y los muestra
      */
-    private void showPosts()  {
+    public void showPosts()  {
         List<Post> posts = new PostDAO().getAll();
-        //Collections.sort(posts);
+        Collections.sort(posts, (o1, o2) -> o1.getDate().compareTo(o2.getDate()));
         Pane pane = null;
         User u = null;
         int columns = 0;

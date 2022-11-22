@@ -20,7 +20,7 @@ public class NewPostController extends Controller {
     private TextArea txtContent;
 
     @FXML
-    private void publishPost(){
+    private void publishPost() {
         Message ms = new ConfirmMessage("¿Desea confirmar la publicación?");
         ms.showMessage();
         if(((ConfirmMessage) ms).getBt() == ButtonType.OK) {
@@ -46,7 +46,7 @@ public class NewPostController extends Controller {
     }
 
     @FXML
-    private void closePublishWindow() {
+    private void closePublishWindow()  {
 
     }
 }
