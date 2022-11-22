@@ -35,25 +35,25 @@ public class LoginController {
 
 
     @FXML public void changeRegister() throws IOException {
-        this.stage = (Stage) this.btnClose.getScene().getWindow();
-        this.stage.close();
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("register.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 480);
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.show();
+        Stage s = new Stage();
+        s.setScene(scene);
+        s.initStyle(StageStyle.UNDECORATED);
+        s.show();
+        this.stage = (Stage) this.btnClose.getScene().getWindow();
+        this.stage.close();
     }
 
     @FXML public void changeFeed() throws IOException {
-        this.stage = (Stage) this.btnClose.getScene().getWindow();
-        this.stage.close();
         FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("feed.fxml"));
         Scene scene = new Scene(fxmlLoader.load(), 320, 480);
-        stage.setScene(scene);
-        stage.setResizable(false);
-        stage.initStyle(StageStyle.UNDECORATED);
-        stage.show();
+        Stage s = new Stage();
+        s.setScene(scene);
+        s.initStyle(StageStyle.UNDECORATED);
+        s.show();
+        this.stage = (Stage) this.btnClose.getScene().getWindow();
+        this.stage.close();
     }
 
     /**
@@ -71,15 +71,7 @@ public class LoginController {
         Message ms = new ConfirmMessage("¿Seguro que desea salir?");
         ms.showMessage();
         if(((ConfirmMessage) ms).getBt() == ButtonType.OK) {
-            //this.chronometer.interrupt();
-            //new InfoMessage("Duración de la sesión:\n"+this.chronometer.getSessionTime()).showMessage();
             Log.infoLogging("Aplicación finalizada.");
-
-
-
-            Log.infoLogging("Aplicación finalizada.");
-
-
             this.stage = (Stage) this.btnClose.getScene().getWindow();
             this.stage.close();
         }

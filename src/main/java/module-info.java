@@ -1,4 +1,4 @@
-module com.facegram {
+module com.facegram.facegram {
     requires javafx.controls;
     requires javafx.fxml;
     requires java.xml.bind;

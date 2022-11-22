@@ -57,8 +57,8 @@ public class FeedController implements  Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //chronometer = new Chronometer();
-        //chronometer.start();
+        chronometer = new Chronometer();
+        chronometer.start();
         showPosts();
     }
 
@@ -100,12 +100,30 @@ public class FeedController implements  Initializable {
     @FXML
     private void createNewPost() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(App.class.getResource("newPost.fxml"));
-            Pane pane = fxmlLoader.load();
+            NewPostController npc = new NewPostController(new User());
+            bdrPane.getChildren().remove(bdrPane.getCenter());
+            Pane pane = FXMLLoader.load(App.class.getResource("newPost.fxml"));
             bdrPane.setCenter(pane);
         } catch (IOException e) {
             Log.warningLogging(e+"");
+        }
+    }
+
+    /**
+     * Cierra la sesion del usuario y vuelve a la pantalla de login
+     * @throws IOException
+     */
+    @FXML
+    private void logout() throws IOException {
+        Message ms = new ConfirmMessage("¿Seguro que desea finalizar la sesión?");
+        ms.showMessage();
+        if(((ConfirmMessage) ms).getBt() == ButtonType.OK) {
+            this.chronometer.interrupt();
+            new InfoMessage("Duración de la sesión:\n"+this.chronometer.getSessionTime()).showMessage();
+            Log.infoLogging("Sesión finalizada.");
+            this.stage = (Stage) this.btnClose.getScene().getWindow();
+            this.stage.close();
+            //App.setRoot("login");
         }
     }
 
@@ -126,10 +144,9 @@ public class FeedController implements  Initializable {
         Message ms = new ConfirmMessage("¿Seguro que desea salir?");
         ms.showMessage();
         if(((ConfirmMessage) ms).getBt() == ButtonType.OK) {
-            //this.chronometer.interrupt();
-            //new InfoMessage("Duración de la sesión:\n"+this.chronometer.getSessionTime()).showMessage();
+            this.chronometer.interrupt();
+            new InfoMessage("Duración de la sesión:\n"+this.chronometer.getSessionTime()).showMessage();
             Log.infoLogging("Aplicación finalizada.");
-
             this.stage = (Stage) this.btnClose.getScene().getWindow();
             this.stage.close();
         }
