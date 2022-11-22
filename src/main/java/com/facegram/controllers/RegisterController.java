@@ -56,10 +56,15 @@ public class RegisterController {
             return null;
         }
     }
+
+    /**
+     * Permite al usuario registrarse si no existe o iniciar sesión si ya existe
+     * @throws IOException
+     */
     @FXML public void register() throws IOException {
-        if(!tfName.getText().equals("") && !tfPassword.getText().equals("")){
-            String name = tfName.getText();
-            String password = tfPassword.getText();
+        String name = tfName.getText();
+        String password = tfPassword.getText();
+        if(!name.equals("") && !password.equals("")){
             encrypt(password);
             User u = new User(name,password);
             UserDAO uDAO = new UserDAO(u);
@@ -68,22 +73,31 @@ public class RegisterController {
                 m.showMessage();
                 if(((ConfirmMessage)m).getBt()==ButtonType.OK){
                     uDAO.insert();
-                    m = new InfoMessage("Usuario añadido");
-                    m.showMessage();
+                    new InfoMessage("Usuario añadido").showMessage();
                     FeedController fc =new FeedController(uDAO.get(name));
                     changeFeed();
                 }
             }else{
-                Message m = new InfoMessage("Sesión iniciada");
-                m.showMessage();
-                FeedController fc =new FeedController(uDAO.get(name));
-                changeFeed();
+                if(uDAO.get(name).getName().equals(name) && uDAO.get(name).getPassword().equals(password)){
+                    Message m = new InfoMessage("Sesión iniciada");
+                    m.showMessage();
+                    FeedController fc =new FeedController(uDAO.get(name));
+                    changeFeed();
+                }else{
+                    new ErrorMessage("El nombre o contraseña son incorrectos").showMessage();
+
+                }
             }
         }else{
-            Message m = new ErrorMessage("Los campos no pueden estar vacíos, introduzcalos");
+            new ErrorMessage("Los campos no pueden estar vacíos, introduzca información").showMessage();
+
         }
     }
 
+    /**
+     * Redirige a la pantalla del Feed
+     * @throws IOException
+     */
     @FXML public void changeFeed() throws IOException {
         this.stage = (Stage) this.btnClose.getScene().getWindow();
         this.stage.close();
@@ -111,8 +125,6 @@ public class RegisterController {
         Message ms = new ConfirmMessage("¿Seguro que desea salir?");
         ms.showMessage();
         if(((ConfirmMessage) ms).getBt() == ButtonType.OK) {
-            //this.chronometer.interrupt();
-            //new InfoMessage("Duración de la sesión:\n"+this.chronometer.getSessionTime()).showMessage();
             Log.infoLogging("Aplicación finalizada.");
             this.stage = (Stage) this.btnClose.getScene().getWindow();
             this.stage.close();
