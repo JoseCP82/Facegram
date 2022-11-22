@@ -42,8 +42,8 @@ public class Chronometer extends Thread {
                     if(isOverTime(seconds)){
                         //Cambiar sout por message cuando funcione
 
-                        new InfoMessage("Ha excedido el tiempo recomendado de uso en Facegram.\n" +
-                            "Desde el equipo de Facegram le sugerimos que descanse periodicamente.").showMessage();
+                       // new InfoMessage("Ha excedido el tiempo recomendado de uso en Facegram.\n" +
+                       //     "Desde el equipo de Facegram le sugerimos que descanse periodicamente.").showMessage();
 
                         System.out.println("Ha excedido el tiempo recomendado de uso en Facegram.\n" +
                                 "Desde el equipo de Facegram le sugerimos que descanse periodicamente.");

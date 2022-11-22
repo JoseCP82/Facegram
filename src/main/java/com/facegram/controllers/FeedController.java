@@ -1,6 +1,5 @@
 package com.facegram.controllers;
 
-import com.facegram.App;
 import com.facegram.log.Log;
 import com.facegram.model.DAO.PostDAO;
 import com.facegram.model.DAO.UserDAO;
@@ -13,9 +12,12 @@ import com.facegram.utils.message.Message;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -57,8 +59,8 @@ public class FeedController implements  Initializable {
      */
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        //chronometer = new Chronometer();
-        //chronometer.start();
+        chronometer = new Chronometer();
+        chronometer.start();
         showPosts();
     }
 
@@ -100,12 +102,36 @@ public class FeedController implements  Initializable {
     @FXML
     private void createNewPost() {
         try {
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(App.class.getResource("newPost.fxml"));
-            Pane pane = fxmlLoader.load();
+            NewPostController npc = new NewPostController(new User());
+            bdrPane.getChildren().remove(bdrPane.getCenter());
+            Pane pane = FXMLLoader.load(App.class.getResource("newPost.fxml"));
             bdrPane.setCenter(pane);
         } catch (IOException e) {
             Log.warningLogging(e+"");
+        }
+    }
+
+    /**
+     * Cierra la sesion del usuario y vuelve a la pantalla de login
+     * @throws IOException
+     */
+    @FXML
+    private void logout() throws IOException {
+        Message ms = new ConfirmMessage("¿Seguro que desea finalizar la sesión?");
+        ms.showMessage();
+        if(((ConfirmMessage) ms).getBt() == ButtonType.OK) {
+            this.chronometer.interrupt();
+            new InfoMessage("Duración de la sesión:\n"+this.chronometer.getSessionTime()).showMessage();
+            Log.infoLogging("Sesión finalizada.");
+            this.user=null;
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("login.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 320, 480);
+            Stage s = new Stage();
+            s.setScene(scene);
+            s.initStyle(StageStyle.UNDECORATED);
+            s.show();
+            this.stage = (Stage) this.btnClose.getScene().getWindow();
+            this.stage.close();
         }
     }
 
@@ -126,10 +152,9 @@ public class FeedController implements  Initializable {
         Message ms = new ConfirmMessage("¿Seguro que desea salir?");
         ms.showMessage();
         if(((ConfirmMessage) ms).getBt() == ButtonType.OK) {
-            //this.chronometer.interrupt();
-            //new InfoMessage("Duración de la sesión:\n"+this.chronometer.getSessionTime()).showMessage();
+            this.chronometer.interrupt();
+            new InfoMessage("Duración de la sesión:\n"+this.chronometer.getSessionTime()).showMessage();
             Log.infoLogging("Aplicación finalizada.");
-
             this.stage = (Stage) this.btnClose.getScene().getWindow();
             this.stage.close();
         }

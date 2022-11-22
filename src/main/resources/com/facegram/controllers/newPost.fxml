@@ -8,6 +8,6 @@
    <children>
       <Button fx:id="btnCancelNew" layoutX="70.0" layoutY="281.0" mnemonicParsing="false" text="Cancel" />
       <Button fx:id="btnNewPost" layoutX="189.0" layoutY="281.0" mnemonicParsing="false" text="Publish" />
-      <TextArea fx:id="txtNewContent" layoutX="33.0" layoutY="70.0" prefHeight="200.0" prefWidth="254.0" />
+      <TextArea fx:id="txtContent" layoutX="57.0" layoutY="67.0" prefHeight="57.0" prefWidth="206.0" />
    </children>
 </Pane>
