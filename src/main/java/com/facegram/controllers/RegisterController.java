@@ -17,6 +17,7 @@ import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.io.IOException;
 import java.security.MessageDigest;
+import java.security.NoSuchAlgorithmException;
 
 public class RegisterController extends Controller {
 
@@ -36,22 +37,19 @@ public class RegisterController extends Controller {
      * Encripta cualquier cadena usando SHA256
      */
     public static String encrypt(String s) {
+        MessageDigest md = null;
         try {
-            MessageDigest md = MessageDigest.getInstance("SHA-256");
-            byte[] b = md.digest(s.getBytes("UTF-8"));
-            StringBuffer sb = new StringBuffer();
-            for(int i=0; i<b.length; i++){
-                String t = Integer.toHexString(0xff & b[i]);
-                if(t.length() == 1){
-                    sb.append('0');
-                    sb.append(t);
-                }
-            }
-            return sb.toString();
-        } catch (Exception e) {
-            Log.warningLogging(e+"");
-            return null;
+            md = MessageDigest.getInstance("SHA-256");
+        }catch(NoSuchAlgorithmException e) {
+            Log.warningLogging(e + "");
         }
+        byte[] bytes = md.digest(s.getBytes());
+        StringBuffer sb = new StringBuffer();
+
+        for(byte b : bytes){
+            sb.append(String.format("%02x", b));
+        }
+        return sb.toString();
     }
 
     /**
@@ -74,7 +72,7 @@ public class RegisterController extends Controller {
                     changeFeed();
                 }
             }else{
-                if(uDAO.get(name).getName().equals(name) && uDAO.get(name).getPassword().equals(password)){
+                if(uDAO.get(name).getName().equals(name) && uDAO.get(name).getPassword().equals(encrypt(password))){
                     Message m = new InfoMessage("Sesión iniciada");
                     m.showMessage();
                     changeFeed();
