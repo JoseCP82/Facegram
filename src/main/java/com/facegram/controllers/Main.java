@@ -1,4 +1,4 @@
-package com.facegram;
+package com.facegram.controllers;
 
 public class Main {
     public static void main(String[] args) {

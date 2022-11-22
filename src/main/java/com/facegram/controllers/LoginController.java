@@ -1,9 +1,7 @@
 package com.facegram.controllers;
 
-import com.facegram.App;
 import com.facegram.log.Log;
 import com.facegram.utils.message.ConfirmMessage;
-import com.facegram.utils.message.InfoMessage;
 import com.facegram.utils.message.Message;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;

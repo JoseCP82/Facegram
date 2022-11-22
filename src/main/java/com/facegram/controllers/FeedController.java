@@ -1,6 +1,5 @@
 package com.facegram.controllers;
 
-import com.facegram.App;
 import com.facegram.log.Log;
 import com.facegram.model.DAO.PostDAO;
 import com.facegram.model.DAO.UserDAO;
@@ -13,9 +12,12 @@ import com.facegram.utils.message.Message;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+
 import java.io.IOException;
 import java.net.URL;
 import java.util.List;
@@ -121,9 +123,15 @@ public class FeedController implements  Initializable {
             this.chronometer.interrupt();
             new InfoMessage("Duración de la sesión:\n"+this.chronometer.getSessionTime()).showMessage();
             Log.infoLogging("Sesión finalizada.");
+            this.user=null;
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("login.fxml"));
+            Scene scene = new Scene(fxmlLoader.load(), 320, 480);
+            Stage s = new Stage();
+            s.setScene(scene);
+            s.initStyle(StageStyle.UNDECORATED);
+            s.show();
             this.stage = (Stage) this.btnClose.getScene().getWindow();
             this.stage.close();
-            //App.setRoot("login");
         }
     }
 

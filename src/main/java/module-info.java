@@ -8,10 +8,9 @@ module com.facegram.facegram {
     requires java.desktop;
 
 
-    opens com.facegram to javafx.fxml;
     opens com.facegram.connection to java.xml.bind;
     exports com.facegram.connection;
     opens com.facegram.controllers to javafx.fxml;
-    exports com.facegram;
+    exports com.facegram.controllers;
 
 }

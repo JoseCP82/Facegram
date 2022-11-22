@@ -4,14 +4,17 @@ import com.facegram.model.DAO.PostDAO;
 import com.facegram.model.dataobject.Post;
 import com.facegram.model.dataobject.User;
 import javafx.fxml.FXML;
-import java.awt.*;
+import javafx.scene.control.TextArea;
+
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 public class NewPostController {
 
-    @FXML private TextArea txtContent;
+    @FXML
+    private TextArea txtContent;
+
 
 
     private User user;

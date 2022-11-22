@@ -4,7 +4,7 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane fx:id="panePost" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="170.0" prefWidth="320.0" style="-fx-background-color: DDD9D8;" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<Pane fx:id="panePost" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="170.0" prefWidth="320.0" style="-fx-background-color: DDD9D8;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.facegram.controllers.CommentController">
     <children>
         <Label fx:id="lblUser" layoutX="14.0" layoutY="14.0" text="Usuario" />
         <TextArea fx:id="txtText" layoutX="13.0" layoutY="36.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="94.0" prefWidth="291.0" />
