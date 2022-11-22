@@ -124,7 +124,7 @@ public class FeedController implements  Initializable {
             new InfoMessage("Duración de la sesión:\n"+this.chronometer.getSessionTime()).showMessage();
             Log.infoLogging("Sesión finalizada.");
             this.user=null;
-            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("login.fxml"));
+            FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("register.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 320, 480);
             Stage s = new Stage();
             s.setScene(scene);
