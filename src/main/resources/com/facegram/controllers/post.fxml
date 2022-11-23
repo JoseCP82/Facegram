@@ -10,7 +10,7 @@
 <AnchorPane prefHeight="170.0" prefWidth="305.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.facegram.controllers.PostController">
    <children>
       <Button fx:id="btnLike" layoutX="188.0" layoutY="118.0" mnemonicParsing="false" onAction="#likeStatus" style="-fx-background-color: lightgrey;" text="Like" />
-      <Button fx:id="btnComment" layoutX="231.0" layoutY="118.0" mnemonicParsing="false" style="-fx-background-color: lightgrey;" text="Comment" />
+      <Button fx:id="btnComment" layoutX="231.0" layoutY="118.0" mnemonicParsing="false" onAction="#showComments" style="-fx-background-color: lightgrey;" text="Comment" />
       <Label fx:id="lblUser" layoutX="6.0" layoutY="22.0" text="Label">
          <font>
             <Font name="System Bold" size="14.0" />

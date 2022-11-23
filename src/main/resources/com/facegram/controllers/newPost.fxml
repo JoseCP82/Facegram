@@ -6,8 +6,7 @@
 
 <Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="340.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.facegram.controllers.NewPostController">
    <children>
-      <Button fx:id="btnCancelNew" layoutX="70.0" layoutY="281.0" mnemonicParsing="false" onAction="#closePublishWindow" text="Cancel" />
-      <Button fx:id="btnNewPost" layoutX="189.0" layoutY="281.0" mnemonicParsing="false" onAction="#publishPost" text="Publish" />
+      <Button fx:id="btnNewPost" layoutX="133.0" layoutY="278.0" mnemonicParsing="false" onAction="#publishPost" text="Publish" />
       <TextArea fx:id="txtContent" layoutX="57.0" layoutY="67.0" prefHeight="57.0" prefWidth="206.0" />
    </children>
 </Pane>

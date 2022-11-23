@@ -16,9 +16,15 @@ import java.util.Date;
 
 public class NewPostController extends Controller {
 
+    /**
+     * Atributos bindeados con javafx
+     */
     @FXML
     private TextArea txtContent;
 
+    /**
+     * Crea un nuevo post y lo almacena en la base de datos
+     */
     @FXML
     private void publishPost() {
         Message ms = new ConfirmMessage("¿Desea confirmar la publicación?");
@@ -45,6 +51,9 @@ public class NewPostController extends Controller {
         }
     }
 
+    /**
+     * Cierra la ventana de publicación
+     */
     @FXML
     private void closePublishWindow()  {
 

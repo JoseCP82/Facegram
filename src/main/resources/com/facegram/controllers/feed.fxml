@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="bdrPane" prefHeight="480.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.facegram.controllers.FeedController">
+<BorderPane fx:id="bdrPane" prefHeight="480.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.facegram.controllers.FeedController">
    <top>
       <AnchorPane prefHeight="70.0" prefWidth="320.0" style="-fx-background-color: #A9A9A9;" BorderPane.alignment="CENTER">
          <children>
@@ -37,7 +37,7 @@
       <AnchorPane prefHeight="70.0" prefWidth="320.0" style="-fx-background-color: #A9A9A9;" BorderPane.alignment="CENTER">
          <children>
             <Button fx:id="btnCreate" layoutX="170.0" layoutY="22.0" mnemonicParsing="false" onAction="#createNewPost" text="New" />
-            <Button layoutX="227.0" layoutY="22.0" mnemonicParsing="false" text="Settings" />
+            <Button layoutX="227.0" layoutY="22.0" mnemonicParsing="false" onAction="#goToShowPosts" text="Home" />
             <Button fx:id="btnLogout" layoutX="33.0" layoutY="22.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
             <Button layoutX="101.0" layoutY="22.0" mnemonicParsing="false" text="Search" />
          </children>
