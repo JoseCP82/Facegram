@@ -39,7 +39,7 @@ public class FeedController extends Controller implements Initializable {
     /**
      * Constructor por defecto
      */
-    public FeedController(){}
+    //public FeedController(){}
 
     /**
      * Inicializa los elementos del controlador
@@ -75,7 +75,12 @@ public class FeedController extends Controller implements Initializable {
                 PostController pc = fxmlLoader.getController();
                 u = p.getOwner();
                 u.setName(new UserDAO().get(u.getId()).getName());
-                pc.setPost(p.getOwner().getName(),p.getText(),p.getDate().toString());
+                u.setPosts(PostDAO.getPostOfUser(u));
+                if(p.getOwner().getName().equals(permanentUser.getName())) {
+                    pc.setPost(p,false);
+                } else {
+                    pc.setPost(p,true);
+                }
                 if(columns==1) {
                     columns=0;
                     ++row;
@@ -114,7 +119,7 @@ public class FeedController extends Controller implements Initializable {
             this.chronometer.interrupt();
             new InfoMessage("Duración de la sesión:\n"+this.chronometer.getSessionTime()).showMessage();
             Log.infoLogging("Sesión finalizada.");
-            permanentUser=null;
+            //permanentUser=null;
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("register.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 320, 480);
             Stage s = new Stage();
