@@ -192,13 +192,14 @@ public class PostDAO extends Post implements IDAO<Post,Integer>  {
     @Override
     public int update() {
         int result = 0;
-        if(id==-1) {
+        if(id!=-1) {
             Connection conn = DBConnection.getConnect();
             if (conn != null) {
                 try {
                     PreparedStatement ps = conn.prepareStatement(UPDATE);
                     ps.setObject(1, this.getEditDate());
                     ps.setString(2, this.getText());
+                    ps.setInt(3, this.getId());
                     ps.executeUpdate();
                     ps.close();
                     result = 1;
