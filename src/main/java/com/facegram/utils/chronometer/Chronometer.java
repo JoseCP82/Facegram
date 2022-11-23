@@ -2,6 +2,7 @@ package com.facegram.utils.chronometer;
 
 import com.facegram.log.Log;
 import com.facegram.utils.message.InfoMessage;
+import javafx.application.Platform;
 
 public class Chronometer extends Thread {
 
@@ -40,13 +41,19 @@ public class Chronometer extends Thread {
                 System.out.println("Calculando...");
                 if (!this.isExceed) {
                     if(isOverTime(seconds)){
-                        //Cambiar sout por message cuando funcione
+                        Platform.runLater(new Runnable() {
+                            @Override
+                            public void run() {
+                                new InfoMessage("Ha excedido el tiempo recomendado de uso en Facegram.\n" +
+                                        "Desde el equipo de Facegram le sugerimos que descanse periodicamente.").showMessage();
+                            }
+                        });
 
-                       // new InfoMessage("Ha excedido el tiempo recomendado de uso en Facegram.\n" +
-                       //     "Desde el equipo de Facegram le sugerimos que descanse periodicamente.").showMessage();
+                        /*
+                        Platform.runLater(() ->{
+                            //your code
+                        } );*/
 
-                        System.out.println("Ha excedido el tiempo recomendado de uso en Facegram.\n" +
-                                "Desde el equipo de Facegram le sugerimos que descanse periodicamente.");
                         this.isExceed = true;
                     }
                 }

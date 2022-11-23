@@ -16,7 +16,7 @@ public class PostDAO extends Post implements IDAO<Post,Integer>  {
      * Consultas MySQL
      */
     private final static String INSERT = "INSERT INTO post (id_user, date, edit_Date, text) VALUES (?,?,?,?)";
-    private final static String SELECTALLBYUSER = "SELECT id, date, edit_date, text FROM Post WHERE id_user=?";
+    private final static String SELECTALLBYUSER = "SELECT id, date, edit_date, text FROM post WHERE id_user=?";
     private final static String SELECTALL = "SELECT id, date, edit_date, text, id_user FROM post";
     private final static String SELECTBYID = "SELECT id, id_user, date, edit_date, text FROM post WHERE id=?";
     private final static String UPDATE = "UPDATE post SET edit_date=?, text=? WHERE id=?";
