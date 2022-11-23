@@ -69,18 +69,19 @@ public class RegisterController extends Controller {
                 if(((ConfirmMessage)m).getBt()==ButtonType.OK){
                     uDAO.insert();
                     new InfoMessage("Usuario añadido").showMessage();
+                    permanentUser=uDAO.get(name);
                     changeFeed();
                 }
             }else{
                 if(uDAO.get(name).getName().equals(name) && uDAO.get(name).getPassword().equals(encrypt(password))){
                     Message m = new InfoMessage("Sesión iniciada");
                     m.showMessage();
+                    permanentUser=uDAO.get(name);
                     changeFeed();
                 }else{
                     new ErrorMessage("El nombre o contraseña son incorrectos").showMessage();
                 }
             }
-            permanentUser=uDAO.get(name);
         }else{
             new ErrorMessage("Los campos no pueden estar vacíos, introduzca información").showMessage();
         }
