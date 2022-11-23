@@ -37,10 +37,13 @@ public class CommentController implements Initializable {
      * Constructor con parámetro Post
      * @param post Post
      */
+    /*
     private CommentController(Post post){
         this.post = post;
     }
 
+
+     */
     /**
      * Se setean los elementos del archivo fxml
      * @param userName Setea el nombre del usuario
@@ -55,7 +58,8 @@ public class CommentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        showComments();
+
+        //showComments();
     }
 
     /**

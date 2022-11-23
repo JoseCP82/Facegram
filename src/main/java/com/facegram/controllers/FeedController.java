@@ -51,7 +51,8 @@ public class FeedController extends Controller implements Initializable {
         chronometer = new Chronometer();
         chronometer.start();
         showPosts();
-        //borderPane=this.bdrPane;
+        borderPane=this.bdrPane;
+        scrollPane=this.paneCenter;
     }
 
     /**
@@ -59,7 +60,7 @@ public class FeedController extends Controller implements Initializable {
      */
     public void showPosts()  {
         List<Post> posts = new PostDAO().getAll();
-        Collections.sort(posts, (o1, o2) -> o1.getDate().compareTo(o2.getDate()));
+        Collections.sort(posts, (o1, o2) -> o2.getDate().compareTo(o1.getDate()));
         Pane pane = null;
         User u = null;
         int columns = 0;
@@ -123,6 +124,13 @@ public class FeedController extends Controller implements Initializable {
             this.stage = (Stage) this.btnClose.getScene().getWindow();
             this.stage.close();
         }
+    }
+
+    @FXML
+    private void goToShowPosts() {
+        bdrPane.getChildren().remove(bdrPane.getCenter());
+        bdrPane.setCenter(scrollPane);
+        showPosts();
     }
 
     /**

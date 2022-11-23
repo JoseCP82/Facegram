@@ -6,5 +6,7 @@ public class Like {
 
     private List<User> likes;
 
+    public Like(){
 
+    }
 }
