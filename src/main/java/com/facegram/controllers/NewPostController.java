@@ -39,7 +39,6 @@ public class NewPostController extends Controller {
                 if(pdao.insert()){
                     new InfoMessage("Has realizado una nueva publicación!!!").showMessage();
                     txtContent.setText("");
-                    closePublishWindow();
                 }
                 else {
                     new ErrorMessage("Ocurrió un error inesperado.").showMessage();
@@ -49,13 +48,5 @@ public class NewPostController extends Controller {
                 new InfoMessage("No ha añadido ningún contenido a la publicación!!!").showMessage();
             }
         }
-    }
-
-    /**
-     * Cierra la ventana de publicación
-     */
-    @FXML
-    private void closePublishWindow()  {
-
     }
 }
