@@ -4,6 +4,7 @@ import com.facegram.log.Log;
 import com.facegram.model.DAO.PostDAO;
 import com.facegram.model.dataobject.Post;
 import com.facegram.utils.message.ConfirmMessage;
+import com.facegram.utils.message.ErrorMessage;
 import com.facegram.utils.message.InfoMessage;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -15,6 +16,9 @@ import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 
 public class PostController extends Controller {
 
@@ -26,6 +30,7 @@ public class PostController extends Controller {
     @FXML private TextArea txtContent;
     @FXML private Button btnLike;
     @FXML private Button btnDelete;
+    @FXML private Button btnEdit;
 
     /**
      * Atributos de clase
@@ -49,8 +54,11 @@ public class PostController extends Controller {
         ConfirmMessage cm = new ConfirmMessage("¿Seguro que desa eliminar el post actual?");
         cm.showMessage();
         if(cm.getBt()== ButtonType.OK){
-            new PostDAO(idPost).delete();
-            new InfoMessage("Post eliminado.").showMessage();
+            if(new PostDAO(idPost).delete()==1) {
+                new InfoMessage("Post eliminado.").showMessage();
+            } else {
+                new ErrorMessage("No se pudo eliminar el post.").showMessage();
+            }
         }
     }
 
@@ -58,9 +66,24 @@ public class PostController extends Controller {
      * Actualiza un post de la aplicación
      */
     @FXML
-    public void updatePOst() {
+    public void updatePost() {
+        ConfirmMessage cm = new ConfirmMessage("¿Seguro que desa modificar el post actual?");
+        cm.showMessage();
+        if(cm.getBt()== ButtonType.OK){
+            PostDAO p = new PostDAO(idPost);
+            p.setText(txtContent.getText());
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+            Calendar calendar = Calendar.getInstance();
+            Date dateNow = calendar.getTime();
+            p.setEditDate(dateNow);
+            System.out.println(p.getId());
+            if(p.update()==1) {
+                new InfoMessage("Post actualizado.").showMessage();
+            } else {
+                new ErrorMessage("No se pudo actualizar el post.").showMessage();
+            }
+        }
     }
-
 
     /**
      * Setea los elementos del archivo fxml
@@ -73,6 +96,8 @@ public class PostController extends Controller {
         this.lblDate.setText(post.getDate().toString());
         this.btnDelete.setDisable(byeStatus);
         this.idPost=post.getId();
+        this.txtContent.setEditable(true);
+        this.btnEdit.setDisable(byeStatus);
     }
 
     /**
@@ -98,6 +123,7 @@ public class PostController extends Controller {
      */
     @FXML
     private void showComments() {
+        permanentIdPost=idPost;
         try {
             BorderPane bdrPane = borderPane;
             bdrPane.getChildren().remove(bdrPane.getCenter());
