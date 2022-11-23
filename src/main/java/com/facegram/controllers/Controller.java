@@ -12,4 +12,5 @@ public abstract class Controller {
     protected static User permanentUser;
     protected static BorderPane borderPane;
     protected static ScrollPane scrollPane;
+    protected static int permanentIdPost;
 }
