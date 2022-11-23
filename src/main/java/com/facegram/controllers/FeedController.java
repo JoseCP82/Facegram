@@ -37,11 +37,6 @@ public class FeedController extends Controller implements Initializable {
     private Stage stage;
 
     /**
-     * Constructor por defecto
-     */
-    //public FeedController(){}
-
-    /**
      * Inicializa los elementos del controlador
      * @param url
      * @param resourceBundle
@@ -119,7 +114,7 @@ public class FeedController extends Controller implements Initializable {
             this.chronometer.interrupt();
             new InfoMessage("Duración de la sesión:\n"+this.chronometer.getSessionTime()).showMessage();
             Log.infoLogging("Sesión finalizada.");
-            //permanentUser=null;
+            permanentUser=null;
             FXMLLoader fxmlLoader = new FXMLLoader(App.class.getResource("register.fxml"));
             Scene scene = new Scene(fxmlLoader.load(), 320, 480);
             Stage s = new Stage();

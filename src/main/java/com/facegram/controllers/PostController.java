@@ -5,7 +5,6 @@ import com.facegram.model.DAO.PostDAO;
 import com.facegram.model.dataobject.Post;
 import com.facegram.utils.message.ConfirmMessage;
 import com.facegram.utils.message.InfoMessage;
-import com.facegram.utils.message.Message;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
@@ -34,17 +33,33 @@ public class PostController extends Controller {
     private boolean btnLikePush = false;
     private int idPost;
 
+    /**
+     * Obtiene la id de un post
+     * @return entero con la id del post
+     */
+    public int getIdPost() {
+        return this.idPost;
+    }
+
+    /**
+     * Elimina un post de la aplicación
+     */
     @FXML
     public void deletePost() {
         ConfirmMessage cm = new ConfirmMessage("¿Seguro que desa eliminar el post actual?");
         cm.showMessage();
         if(cm.getBt()== ButtonType.OK){
             new PostDAO(idPost).delete();
-            new InfoMessage("Post eliminado").showMessage();
+            new InfoMessage("Post eliminado.").showMessage();
         }
     }
 
-    //public void updatePOst() {}
+    /**
+     * Actualiza un post de la aplicación
+     */
+    @FXML
+    public void updatePOst() {
+    }
 
 
     /**
