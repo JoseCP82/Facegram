@@ -5,6 +5,7 @@ import com.facegram.interfaces.IDAO;
 import com.facegram.log.Log;
 import com.facegram.model.dataobject.Comment;
 import com.facegram.model.dataobject.Post;
+import com.facegram.model.dataobject.User;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -17,7 +18,7 @@ public class CommentDAO extends Comment implements IDAO<Comment, Integer> {
      * Consultas MySQL
      */
     private final static String INSERT="INSERT INTO comment (text) VALUES (?))";
-    private final static String SELECTBYPOST="SELECT comment FROM Post WHERE id_post=?";
+    private final static String SELECTBYPOST="SELECT comment.id, user.name, comment.text, comment.fecha FROM comment JOIN post ON post.id = comment.id_post JOIN user ON comment.id_user = user.id WHERE id_post=?";
     private final static String DELETE="DELETE FROM comment WHERE id=?";
 
     /**
@@ -30,6 +31,10 @@ public class CommentDAO extends Comment implements IDAO<Comment, Integer> {
         super(id, text, date);
     }
 
+
+    public CommentDAO(int id, User user, String text, Date date) {
+        super(id, user, text, date);
+    }
     /**
      *Consturctor con parámetro Comment
      * @param comment Comment a instanciar
@@ -98,6 +103,7 @@ public class CommentDAO extends Comment implements IDAO<Comment, Integer> {
     public List<Comment> getCommentsofPost(Post post) {
         List<Comment> result = new ArrayList<Comment>();
         Connection conn = DBConnection.getConnect();
+        User u = new User();
         if(conn!=null){
             PreparedStatement ps;
             try{
@@ -107,6 +113,7 @@ public class CommentDAO extends Comment implements IDAO<Comment, Integer> {
                     ResultSet rs = ps.getResultSet();
                     while(rs.next()){
                         Comment c = new Comment(rs.getInt("id"),
+                                (User) rs.getObject("name"),
                                 rs.getString("text"),
                                 rs.getDate("date")
                                 );
