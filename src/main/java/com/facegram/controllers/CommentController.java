@@ -58,8 +58,7 @@ public class CommentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-
-        //showComments();
+        showComments();
     }
 
     /**
@@ -67,6 +66,7 @@ public class CommentController implements Initializable {
      */
     private void showComments(){
         List<Comment> comments = new CommentDAO().getCommentsofPost(post);
+        System.out.println(comments);
         Pane pane = null;
         Post p = null;
         int columns = 0;

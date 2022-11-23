@@ -23,6 +23,20 @@ public class Comment {
     }
 
     /**
+     * Constructor parametrizado
+     * @param id Identificacion asignada al comentario
+     * @param user Usuario que ha escrito el comentario
+     * @param text Texto que contiene el comentario
+     * @param date Fecha de publicación del comentario
+     */
+    public Comment(int id,User user, String text, Date date) {
+        this.id = id;
+        this.user = user;
+        this.text = text;
+        this.date = date;
+    }
+
+    /**
      * Constructor por defecto
      */
     public Comment() {
