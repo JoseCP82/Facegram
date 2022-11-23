@@ -1,7 +1,5 @@
 package com.facegram.controllers;
 
-import com.facegram.model.DAO.UserDAO;
-import com.facegram.model.dataobject.User;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
