@@ -9,7 +9,7 @@ public class Chronometer extends Thread {
     /**
      * Atributos de clase
      */
-    private final int TIME_MAX = 10; //Segundos 900 --> 15 minutos
+    private final int TIME_MAX = 60; //Segundos 900 --> 15 minutos
     private String sessionTime;
     private boolean isExceed;
 
@@ -38,14 +38,13 @@ public class Chronometer extends Thread {
             while(!this.isInterrupted()) {
                 Thread.sleep(1000);
                 calculateSessionTime(++seconds);
-                System.out.println("Calculando...");
                 if (!this.isExceed) {
                     if(isOverTime(seconds)){
                         Platform.runLater(new Runnable() {
                             @Override
                             public void run() {
                                 new InfoMessage("Ha excedido el tiempo recomendado de uso en Facegram.\n" +
-                                        "Desde el equipo de Facegram le sugerimos que descanse periodicamente.").showMessage();
+                                        "Desde el equipo de Facegram le sugerimos que \ndescanse periodicamente.").showMessage();
                             }
                         });
 
