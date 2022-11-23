@@ -1,6 +1,7 @@
 package com.facegram.model.DAO;
 
 import com.facegram.connection.DBConnection;
+import com.facegram.controllers.PostController;
 import com.facegram.interfaces.IDAO;
 import com.facegram.log.Log;
 import com.facegram.model.dataobject.Comment;
@@ -104,11 +105,19 @@ public class CommentDAO extends Comment implements IDAO<Comment, Integer> {
         List<Comment> result = new ArrayList<Comment>();
         Connection conn = DBConnection.getConnect();
         User u = new User();
+        System.out.println("Aquí funciona");
+        if(post.getId()!=0){
+            System.out.println(post.getId());
+            System.out.println("Aqui está la id");
+        } else {
+            System.out.println("Recibe null la id del post");
+        }
         if(conn!=null){
             PreparedStatement ps;
             try{
                 ps = conn.prepareStatement(SELECTBYPOST);
                 ps.setInt(1, post.getId());
+
                 if(ps.execute()){
                     ResultSet rs = ps.getResultSet();
                     while(rs.next()){
