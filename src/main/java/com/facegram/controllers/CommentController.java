@@ -9,6 +9,7 @@ import com.facegram.model.dataobject.Post;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ScrollPane;
 import javafx.scene.control.TextArea;
@@ -33,6 +34,8 @@ public class CommentController extends Controller implements Initializable {
      */
     @FXML private Label lblNoExists;
     @FXML private ScrollPane scrollComments;
+    @FXML private AnchorPane anchorShowComment;
+    @FXML private Button btnAddComment;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -80,12 +83,12 @@ public class CommentController extends Controller implements Initializable {
     @FXML
     private void createNewComment(){
         try{
-            FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(App.class.getResource("newComment.fxml"));
-            Pane pane = fxmlLoader.load();
-            //bdrPane.setCenter(pane); //????
+            btnAddComment.setVisible(false);
+            anchorShowComment.getChildren().remove(anchorShowComment.getChildren());
+            anchorShowComment.getChildren().add(FXMLLoader.load(App.class.getResource("newComment.fxml")));
         } catch (IOException e) {
             Log.warningLogging(e+"");
         }
+
     }
 }

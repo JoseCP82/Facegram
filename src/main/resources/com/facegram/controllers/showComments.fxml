@@ -8,8 +8,8 @@
 <AnchorPane fx:id="anchorShowComment" prefHeight="340.0" prefWidth="320.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.facegram.controllers.CommentController">
 
    <children>
-      <Button fx:id="addComment" layoutX="130.0" layoutY="299.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="60.0" text="Coment" />
-      <ScrollPane fx:id="scrollComments" hbarPolicy="NEVER" prefHeight="282.0" prefWidth="320.0" vbarPolicy="ALWAYS">
+      <Button fx:id="btnAddComment" layoutX="130.0" layoutY="299.0" mnemonicParsing="false" onAction="#createNewComment" prefHeight="26.0" prefWidth="60.0" text="Coment" />
+      <ScrollPane fx:id="scrollComments" hbarPolicy="NEVER" prefHeight="282.0" prefWidth="320.0">
          <content>
             <Label fx:id="lblNoExists" alignment="CENTER" contentDisplay="CENTER" prefHeight="104.0" prefWidth="306.0" />
          </content>

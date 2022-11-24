@@ -9,7 +9,9 @@ import com.facegram.model.dataobject.Post;
 import com.facegram.model.dataobject.User;
 
 import java.sql.*;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
@@ -18,7 +20,7 @@ public class CommentDAO extends Comment implements IDAO<Comment, Integer> {
     /**
      * Consultas MySQL
      */
-    private final static String INSERT="INSERT INTO comment (text) VALUES (?))";
+    private final static String INSERT="INSERT INTO comment (text,id_user,id_post,date) VALUES (?,?,?,?)";
     private final static String SELECTBYPOST="SELECT comment.id, comment.id_user, comment.text, comment.date FROM comment JOIN post ON post.id = comment.id_post JOIN user ON comment.id_user = user.id WHERE id_post=?";
     private final static String DELETE="DELETE FROM comment WHERE id=?";
 
@@ -70,6 +72,11 @@ public class CommentDAO extends Comment implements IDAO<Comment, Integer> {
                 try {
                     ps = conn.prepareStatement(INSERT,Statement.RETURN_GENERATED_KEYS);
                     ps.setString(1,this.text);
+                    ps.setInt(2,this.user.getId());
+                    ps.setInt(3,this.post.getId());
+                    Calendar calendar = Calendar.getInstance();
+                    Date dateNow = calendar.getTime();
+                    ps.setObject(4, dateNow);
                     ps.executeUpdate();
                     ResultSet rs = ps.getGeneratedKeys();
                     if(rs.next()){
