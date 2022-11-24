@@ -4,10 +4,10 @@
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.layout.Pane?>
 
-<Pane fx:id="panePost" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="170.0" prefWidth="320.0" style="-fx-background-color: DDD9D8;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.facegram.controllers.CommentController">
+<Pane fx:id="paneComment" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="131.0" prefWidth="320.0" style="-fx-background-color: DDD9D8;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.facegram.controllers.ItemCommentController">
     <children>
         <Label fx:id="lblUser" layoutX="14.0" layoutY="14.0" text="Usuario" />
-        <TextArea fx:id="txtComment" layoutX="13.0" layoutY="31.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="105.0" prefWidth="291.0" />
-        <Label fx:id="lblDate" layoutX="13.0" layoutY="139.0" text="Fecha" />
+        <TextArea fx:id="txtComment" layoutX="15.0" layoutY="38.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="55.0" prefWidth="291.0" />
+        <Label fx:id="lblDate" layoutX="13.0" layoutY="103.0" text="Fecha" />
     </children>
 </Pane>
