@@ -19,7 +19,7 @@ public class CommentDAO extends Comment implements IDAO<Comment, Integer> {
      * Consultas MySQL
      */
     private final static String INSERT="INSERT INTO comment (text) VALUES (?))";
-    private final static String SELECTBYPOST="SELECT comment.id, user.name, comment.text, comment.fecha FROM comment JOIN post ON post.id = comment.id_post JOIN user ON comment.id_user = user.id WHERE id_post=?";
+    private final static String SELECTBYPOST="SELECT comment.id, user.id, comment.text, comment.date FROM comment JOIN post ON post.id = comment.id_post JOIN user ON comment.id_user = user.id WHERE id_post=?";
     private final static String DELETE="DELETE FROM comment WHERE id=?";
 
     /**
@@ -122,10 +122,10 @@ public class CommentDAO extends Comment implements IDAO<Comment, Integer> {
                     ResultSet rs = ps.getResultSet();
                     while(rs.next()){
                         Comment c = new Comment(rs.getInt("id"),
-                                (User) rs.getObject("name"),
                                 rs.getString("text"),
                                 rs.getDate("date")
                                 );
+                        c.setUser(new User(rs.getInt("id")));
                         result.add(c);
                     }
                     rs.close();
