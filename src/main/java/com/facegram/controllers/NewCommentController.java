@@ -1,45 +1,40 @@
 package com.facegram.controllers;
 
 import com.facegram.model.DAO.CommentDAO;
-import com.facegram.model.dataobject.Comment;
-import com.facegram.utils.message.ConfirmMessage;
-import com.facegram.utils.message.Message;
+import com.facegram.model.DAO.PostDAO;
+import com.facegram.utils.message.ErrorMessage;
+import com.facegram.utils.message.InfoMessage;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextArea;
-import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 
-public class NewCommentController {
-    CommentDAO cDao = new CommentDAO();
+public class NewCommentController extends Controller {
 
+    /**
+     * Atributos bindeados con javafx
+     */
     @FXML private TextArea textComment;
-    @FXML private Button buttonClose;
-    @FXML private Button buttonAdd;
 
-
+    /**
+     * Crea un comentario nuevo
+     */
     @FXML
     private void addComment() {
+        CommentDAO cDao = new CommentDAO();
         String text = textComment.getText();
-        cDao.setText(text);
-
-        cDao.insert();
-    }
-
-    @FXML
-    private void cancelButton() {
-        Message msg = new ConfirmMessage("¿Estás seguro?");
-        msg.showMessage();
-        if(((ConfirmMessage) msg).getBt() == ButtonType.OK) {
-            Stage stage = (Stage) this.buttonClose.getScene().getWindow();
-            stage.close();
-            switchToComment();
+        if(!text.equals("")) {
+            cDao.setText(text);
+            cDao.setUser(permanentUser);
+            cDao.setPost(new PostDAO().get(permanentIdPost));
+            if(cDao.insert()){
+                new InfoMessage("Comentario publicado.").showMessage();
+            }
+            else{
+                new ErrorMessage("No se pudo publicar el comentario.").showMessage();
+            }
+            textComment.setText("");
         }
-    }
-
-    @FXML
-    private void switchToComment() {
-
+        else{
+            new InfoMessage("El comentario no puede estar vacío.").showMessage();
+        }
     }
 }
