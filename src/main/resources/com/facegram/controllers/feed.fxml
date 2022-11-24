@@ -36,10 +36,10 @@
    <bottom>
       <AnchorPane prefHeight="70.0" prefWidth="320.0" style="-fx-background-color: #A9A9A9;" BorderPane.alignment="CENTER">
          <children>
-            <Button fx:id="btnCreate" layoutX="170.0" layoutY="22.0" mnemonicParsing="false" onAction="#createNewPost" text="New" />
-            <Button layoutX="227.0" layoutY="22.0" mnemonicParsing="false" onAction="#goToShowPosts" text="Home" />
-            <Button fx:id="btnLogout" layoutX="33.0" layoutY="22.0" mnemonicParsing="false" onAction="#logout" text="Logout" />
-            <Button layoutX="101.0" layoutY="22.0" mnemonicParsing="false" text="Search" />
+            <Button fx:id="btnCreate" layoutX="166.0" layoutY="22.0" mnemonicParsing="false" onAction="#createNewPost" prefWidth="60.0" text="New" />
+            <Button layoutX="235.0" layoutY="22.0" mnemonicParsing="false" onAction="#goToShowPosts" prefWidth="60.0" text="Home" />
+            <Button fx:id="btnLogout" layoutX="23.0" layoutY="22.0" mnemonicParsing="false" onAction="#logout" prefWidth="60.0" text="Logout" />
+            <Button layoutX="94.0" layoutY="22.0" mnemonicParsing="false" prefWidth="60.0" text="Search" />
          </children>
       </AnchorPane>
    </bottom>
