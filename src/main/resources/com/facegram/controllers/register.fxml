@@ -9,15 +9,15 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane fx:id="anchorLogin" prefHeight="480.0" prefWidth="320.0" stylesheets="@../../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.facegram.controllers.RegisterController">
+<AnchorPane fx:id="anchorLogin" onDragDetected="#makeStageDragable" prefHeight="480.0" prefWidth="320.0" styleClass="parent" stylesheets="@../../../css/style.css" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.facegram.controllers.RegisterController">
     <children>
-        <AnchorPane prefHeight="70.0" prefWidth="320.0" style="-fx-background-color: #A9A9A9">
+        <AnchorPane prefHeight="70.0" prefWidth="320.0" style="-fx-background-color: #A9A9A9;">
             <children>
-                <Button fx:id="btnClose" layoutX="283.0" layoutY="20.0" mnemonicParsing="false" onAction="#closeApp" prefHeight="24.0" prefWidth="24.0" style="-fx-background-radius: 100px;" stylesheets="@../../../css/style.css" text="X">
+                <Button fx:id="btnClose" layoutX="282.0" layoutY="21.0" mnemonicParsing="false" onAction="#closeApp" prefHeight="24.0" prefWidth="24.0" style="-fx-background-radius: 100px;" styleClass="boton-cerrar" text="X">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Button>
-            <Button fx:id="btnMinimize" layoutX="251.0" layoutY="21.0" mnemonicParsing="false" onAction="#minimizeWindow" prefHeight="24.0" prefWidth="24.0" style="-fx-background-radius: 100;" text="_">
+            <Button fx:id="btnMinimize" layoutX="252.0" layoutY="21.0" mnemonicParsing="false" onAction="#minimizeWindow" prefHeight="24.0" prefWidth="24.0" style="-fx-background-radius: 100;" styleClass="boton-edit" text="_">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

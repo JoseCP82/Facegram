@@ -7,12 +7,14 @@ import com.facegram.utils.message.ConfirmMessage;
 import com.facegram.utils.message.ErrorMessage;
 import com.facegram.utils.message.InfoMessage;
 import com.facegram.utils.message.Message;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
 import javafx.stage.StageStyle;
 import java.io.IOException;
@@ -32,6 +34,31 @@ public class RegisterController extends Controller {
     @FXML private Button btnClose;
     @FXML private TextField tfName;
     @FXML private TextField tfPassword;
+    @FXML private AnchorPane anchorLogin;
+    private double xOffSet = 0;
+    private double yOffSet = 0;
+
+    /**
+     * Método que hace drageable un stage
+     */
+    @FXML
+    private void makeStageDragable() {
+        anchorLogin.setOnMousePressed((event) -> {
+            xOffSet = event.getSceneX();
+            yOffSet = event.getSceneY();
+        });
+        anchorLogin.setOnMouseDragged((event) -> {
+            App.stage.setX(event.getScreenX() - xOffSet);
+            App.stage.setY(event.getScreenY() - yOffSet);
+            App.stage.setOpacity(0.8f);
+        });
+        anchorLogin.setOnDragDone((event) -> {
+            App.stage.setOpacity(1.0f);
+        });
+        anchorLogin.setOnMouseReleased((event) -> {
+            App.stage.setOpacity(1.0f);
+        });
+    }
 
     /**
      * Encripta cualquier cadena usando SHA256
