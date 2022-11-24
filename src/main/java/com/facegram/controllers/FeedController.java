@@ -35,6 +35,8 @@ public class FeedController extends Controller implements Initializable {
      */
     private Chronometer chronometer;
     private Stage stage;
+    private double xOffSet = 0;
+    private double yOffSet = 0;
 
     /**
      * Inicializa los elementos del controlador
@@ -48,6 +50,28 @@ public class FeedController extends Controller implements Initializable {
         showPosts();
         borderPane=this.bdrPane;
         scrollPane=this.paneCenter;
+    }
+
+    /**
+     * Método que hace drageable un stage
+     */
+    @FXML
+    private void makeStageDragable() {
+        bdrPane.setOnMousePressed((event) -> {
+            xOffSet = event.getSceneX();
+            yOffSet = event.getSceneY();
+        });
+        bdrPane.setOnMouseDragged((event) -> {
+            App.stage.setX(event.getScreenX() - xOffSet);
+            App.stage.setY(event.getScreenY() - yOffSet);
+            App.stage.setOpacity(0.8f);
+        });
+        bdrPane.setOnDragDone((event) -> {
+            App.stage.setOpacity(1.0f);
+        });
+        bdrPane.setOnMouseReleased((event) -> {
+            App.stage.setOpacity(1.0f);
+        });
     }
 
     /**
