@@ -2,6 +2,7 @@ package com.facegram.controllers;
 
 import com.facegram.log.Log;
 import com.facegram.model.DAO.CommentDAO;
+import com.facegram.model.DAO.PostDAO;
 import com.facegram.model.dataobject.Comment;
 import com.facegram.model.dataobject.Post;
 import javafx.fxml.FXML;
@@ -18,7 +19,7 @@ import java.net.URL;
 import java.util.List;
 import java.util.ResourceBundle;
 
-public class CommentController implements Initializable {
+public class CommentController extends Controller implements Initializable {
 
     /**
      * Atributos de la clase
@@ -58,15 +59,14 @@ public class CommentController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        showComments();
+       showComments();
     }
 
     /**
      * Lee de la bbdd todos los comentarios de un post y los muestra
      */
     private void showComments(){
-        List<Comment> comments = new CommentDAO().getCommentsofPost(post);
-        System.out.println(comments);
+        List<Comment> comments = new CommentDAO().getCommentsofPost(new PostDAO().get(permanentIdPost));
         Pane pane = null;
         Post p = null;
         int columns = 0;
