@@ -83,6 +83,7 @@ public class CommentController extends Controller implements Initializable {
     @FXML
     private void createNewComment(){
         try{
+            scrollComments.setVisible(false);
             btnAddComment.setVisible(false);
             anchorShowComment.getChildren().remove(anchorShowComment.getChildren());
             anchorShowComment.getChildren().add(FXMLLoader.load(App.class.getResource("newComment.fxml")));

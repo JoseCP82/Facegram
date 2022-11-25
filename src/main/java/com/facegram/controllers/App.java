@@ -1,5 +1,6 @@
 package com.facegram.controllers;
 
+import com.facegram.utils.badWords.BadWords;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

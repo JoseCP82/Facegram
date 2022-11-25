@@ -84,6 +84,7 @@ public class CommentDAO extends Comment implements IDAO<Comment, Integer> {
                     }
                     ps.close();
                     rs.close();
+                    result=true;
                 } catch (SQLException e) {
                     Log.warningLogging(e+"");
                 }
