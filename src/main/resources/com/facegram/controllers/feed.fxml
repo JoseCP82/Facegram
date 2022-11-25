@@ -44,6 +44,6 @@
       </AnchorPane>
    </bottom>
    <center>
-      <ScrollPane fx:id="paneCenter" hbarPolicy="NEVER" prefHeight="170.0" prefWidth="319.0" BorderPane.alignment="CENTER" />
+      <ScrollPane fx:id="paneCenter" hbarPolicy="NEVER" prefHeight="170.0" prefWidth="319.0" stylesheets="@../../../css/style.css" BorderPane.alignment="CENTER" />
    </center>
 </BorderPane>
